@@ -4,7 +4,7 @@
 
 Editor de PDF gratuito e de código aberto para Windows. Serve para as tarefas habituais com arquivos PDF — ler, localizar, anotar, preencher formulários, unir, dividir, tarjar ou converter — sem enviar os documentos a nenhum serviço online.
 
-É uma alternativa simples para o uso diário do Adobe Acrobat. Não pretende igualar todas as suas funções: ficam de fora os serviços na nuvem, os fluxos de envio de assinaturas e várias funções especializadas. As limitações concretas de cada função estão descritas em [docs/FEATURES.md](docs/FEATURES.md).
+É um editor de PDF simples para o uso diário. Não pretende cobrir todas as funções especializadas: ficam de fora os serviços na nuvem, os fluxos de envio de assinaturas e várias funções especializadas. As limitações concretas de cada função estão descritas em [docs/FEATURES.md](docs/FEATURES.md).
 
 ![TrazoPDF com tema claro](docs/screenshots/editor-light.png)
 
@@ -136,7 +136,7 @@ O TrazoPDF funciona no seu computador. Não tem contas, telemetria nem verifica�
 
 O TrazoPDF é distribuído sob a [GNU Affero General Public License v3.0 ou posterior](LICENSE) (AGPL-3.0-or-later). Essa licença é necessária porque o PyMuPDF, uma de suas bibliotecas, está sob AGPL-3.0. As licenças das demais bibliotecas estão em [THIRD-PARTY.md](THIRD-PARTY.md).
 
-É uma implementação independente. Não contém código, interface nem recursos gráficos da Adobe.
+É uma implementação independente.
 
 ## Contribuir
 

@@ -1,28 +1,28 @@
-# Privacidad
+# Privacy
 
-TrazoPDF funciona completamente en tu equipo.
+TrazoPDF works entirely on your computer.
 
-## Qué hace la aplicación con tus datos
+## What the application does with your data
 
-- Los documentos PDF y los archivos que abres, creas o guardas se leen y escriben solo en tu disco.
-- No hay cuentas, inicio de sesión ni registro de usuario.
-- No hay telemetría, estadísticas de uso, informes de errores automáticos ni comprobación de actualizaciones.
-- La aplicación no envía tus documentos, sus textos ni sus metadatos a ningún servidor.
-- Las funciones de OCR y de conversión de Office ejecutan Tesseract y LibreOffice en tu equipo, si los tienes instalados. Esos programas tampoco envían datos fuera del equipo por parte de TrazoPDF.
-- Los archivos temporales se crean en la carpeta temporal de Windows durante la operación y se eliminan al terminar.
+- PDF documents and the files you open, create or save are read and written only on your disk.
+- There are no accounts, sign-in or user registration.
+- There is no telemetry, usage statistics, automatic error reporting or update checking.
+- The application does not send your documents, their text or their metadata to any server.
+- The OCR and Office conversion features run Tesseract and LibreOffice on your computer, if you have them installed. Those programs do not send data outside the computer on TrazoPDF's behalf either.
+- Temporary files are created in the Windows temporary folder during the operation and are deleted when it finishes.
 
-## Conexiones de red
+## Network connections
 
-TrazoPDF no abre conexiones de red por sí mismo. La única excepción es cuando haces clic en un enlace dentro de un documento, o eliges abrir un enlace desde el menú: en ese caso se abre tu navegador predeterminado con esa dirección. Esa conexión la establece el navegador, no la aplicación, y está sujeta a su propia política de privacidad.
+TrazoPDF does not open network connections on its own. The only exception is when you click a link inside a document, or choose to open a link from the menu: in that case your default browser opens that address. That connection is made by the browser, not the application, and is subject to its own privacy policy.
 
-## Información que guarda la aplicación
+## Information the application stores
 
-La aplicación guarda en tu perfil de usuario las preferencias de la interfaz, como la disposición del panel de páginas o la lista de archivos recientes. Puedes eliminar esos datos borrando la carpeta de configuración de la aplicación. No se guarda el contenido de los documentos.
+The application stores interface preferences in your user profile, such as the layout of the page panel or the list of recent files. You can delete this data by deleting the application's settings folder. The content of documents is not stored.
 
-## Recomendaciones antes de compartir un PDF
+## Recommendations before sharing a PDF
 
-Un PDF puede contener información que no se ve en la página: metadatos, autor, historial de revisiones, texto oculto bajo una imagen, adjuntos o enlaces. TrazoPDF incluye herramientas para revisar y eliminar algunos de esos datos, pero no garantiza una auditoría completa. Revisa el archivo final con un lector independiente antes de compartirlo.
+A PDF may contain information that is not visible on the page: metadata, author, revision history, hidden text under an image, attachments or links. TrazoPDF includes tools to review and remove some of this data, but does not guarantee a complete audit. Review the final file with an independent reader before sharing it.
 
-## Contacto
+## Contact
 
-Si detectas un comportamiento que contradiga esta descripción, sigue el proceso de [SECURITY.md](SECURITY.md).
+If you find behavior that contradicts this description, follow the process in [SECURITY.md](SECURITY.md).

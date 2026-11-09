@@ -1,27 +1,27 @@
-# Seguridad
+# Security
 
-## Versiones compatibles
+## Supported versions
 
-Solo la última versión publicada recibe correcciones de seguridad.
+Only the latest published version receives security fixes.
 
-## Cómo notificar una vulnerabilidad
+## How to report a vulnerability
 
-No abras un issue público para una vulnerabilidad. Usa los avisos de seguridad privados de GitHub:
+Do not open a public issue for a vulnerability. Use GitHub's private security advisories:
 
-1. Ve a la pestaña **Security** del repositorio.
-2. Pulsa **Report a vulnerability**.
-3. Describe el problema, los pasos para reproducirlo, la versión afectada y, si es posible, un PDF de prueba.
+1. Go to the **Security** tab of the repository.
+2. Click **Report a vulnerability**.
+3. Describe the problem, the steps to reproduce it, the affected version and, if possible, a test PDF.
 
-Los avisos privados solo los ven los mantenedores del proyecto. Si no puedes usar GitHub, abre un issue pidiendo un canal privado, sin incluir detalles técnicos ni archivos.
+Private advisories are only visible to the project maintainers. If you cannot use GitHub, open an issue requesting a private channel, without including technical details or files.
 
-## Qué esperar
+## What to expect
 
-- Se confirma la recepción en un plazo de una semana.
-- Se valora el impacto y se acuerda con quien informa un plazo de corrección y la forma de publicarla.
-- Cuando la corrección esté disponible, se publica una nueva versión y se describe el problema en el CHANGELOG, con crédito a quien lo notificó si lo desea.
+- Receipt is confirmed within one week.
+- The impact is assessed, and a fix timeline and publication method are agreed with the reporter.
+- When the fix is available, a new version is published and the issue is described in the CHANGELOG, crediting the reporter if they wish.
 
-## Alcance
+## Scope
 
-Son de interés, por ejemplo, los fallos que permitan ejecutar código o escribir fuera de lo previsto al abrir o guardar un PDF, al procesar archivos de Office o al ejecutar OCR, así como errores en el cifrado o en la gestión de contraseñas.
+Of interest, for example, are flaws that allow code execution or writes outside what is intended when opening or saving a PDF, when processing Office files or when running OCR, as well as errors in encryption or password handling.
 
-TrazoPDF no ofrece servicios en red ni cuentas, así que no aplican los problemas de servidor típicos. Los límites documentados en [docs/FEATURES.md](docs/FEATURES.md), como que no se valida la cadena de confianza de las firmas, no son vulnerabilidades, aunque sí se pueden reportar como mejoras.
+TrazoPDF does not offer network services or accounts, so typical server issues do not apply. The limits documented in [docs/FEATURES.md](docs/FEATURES.md), such as the fact that the signature trust chain is not validated, are not vulnerabilities, although they can be reported as improvements.

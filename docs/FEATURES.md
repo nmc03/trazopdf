@@ -1,81 +1,79 @@
-# Funciones y límites
+# Features and limits
 
-TrazoPDF ofrece un conjunto local de herramientas de PDF. Esta tabla describe el alcance de las operaciones implementadas; las comprobaciones automatizadas no sustituyen la revisión de documentos reales, especialmente en conversiones, formularios y firmas.
+TrazoPDF provides a local set of PDF tools. This table describes the scope of the implemented operations; automated checks do not replace reviewing real documents, especially for conversions, forms and signatures.
 
-| Área | Alcance | Límites relevantes |
+| Area | Scope | Relevant limits |
 | --- | --- | --- |
-| Lectura | Renderizar páginas, zoom, buscar texto y navegar por marcadores. Vistas de página completa, ancho, 100 %, dos páginas y desplazamiento continuo. Cada documento recuerda su página, zoom y desplazamiento. | La búsqueda requiere una capa de texto; para escaneos puede ser necesario OCR. |
-| Buscar y reemplazar | Barra con anterior y siguiente, contador de coincidencias y opciones de búsqueda; reemplazar texto del documento. | Solo encuentra y reemplaza texto con capa de texto. El reemplazo sigue los límites de edición de la fila Texto. |
-| Texto | Seleccionar caracteres/palabras/líneas; escribir sobre la página; editar, mover y eliminar bloques de PDF existentes; cambiar estilo básico. | No redistribuye otros bloques como un documento Word. Las fuentes originales pueden sustituirse. El texto inclinado dentro de una página aún no se edita directamente. |
-| Imágenes | Insertar, seleccionar, mover, redimensionar, sustituir y eliminar imágenes individuales con historial. | Edición acotada a imágenes directas compatibles; imágenes anidadas, inline o con estados gráficos complejos pueden no admitirla. Sustituir conserva el área y puede estirar la nueva imagen. No reconstruye el documento original de diseño. |
-| Enlaces | Crear, editar, eliminar y listar enlaces web/correo y a páginas internas; apertura explícita desde el menú. | Otros tipos de destino se pueden eliminar, pero no editar ni ejecutar. |
-| Anotaciones | Resaltado, notas, subrayado, tachado, figuras, tinta, líneas, flechas y cuadros de texto. Las notas tienen hilo de respuestas y estado, y se gestionan en el panel de comentarios. | La apariencia puede variar según el lector de PDF. |
-| Censura | Marcar zonas para censurar y aplicar las censuras: se elimina el texto, las imágenes y los gráficos bajo la marca, y también los enlaces, campos de formulario y anotaciones que la tocan, y los metadatos, XMP y marcadores que citan el texto censurado. | Las marcas sin aplicar no censuran nada: el texto sigue en el archivo, por lo que guardar, exportar, extraer, dividir o firmar con marcas pendientes pide confirmación. Revisa adjuntos y otras zonas antes de compartir información sensible. |
-| Buscar y censurar | Busca patrones (tarjetas con comprobación Luhn, IBAN, DNI/NIE, NIF/CIF, teléfonos, fechas, correos) o texto/expresiones regulares propias y marca las coincidencias elegidas; después ofrece aplicarlas. | Detecta lo que está escrito como texto: no lee imágenes escaneadas (usa OCR antes). Puede haber falsos positivos y falsos negativos; revisa la lista. |
-| Anonimizar documento | Asistente que detecta datos personales (patrones de Buscar y censurar, más Seguridad Social, matrícula, IP y términos o expresiones propias), los censura, elimina metadatos, XMP, marcadores, adjuntos y anotaciones que los citan, reescribe una copia completa sin historial y verifica el resultado. Informe TXT o JSON que no repite los datos eliminados. | La verificación no detecta texto en fuentes con subconjunto de glifos ni en imágenes sin OCR. No admite documentos cifrados. El original no se modifica. |
-| Páginas | Organizar, eliminar, duplicar, combinar, dividir con opciones, extraer, recortar y rotar. Combinar admite soltar varios PDF sobre la ventana. | El recorte cambia el área visible; no debe emplearse para censurar datos sensibles. |
-| Formularios | Crear y rellenar campos AcroForm; texto y casillas se pueden rellenar directamente sobre la página. | No incluye formularios XFA ni todos los scripts JavaScript de Acrobat. |
-| Campos automáticos | Detecta líneas y casillas de formularios sin campos y propone crearlos, con vista previa y selección antes de aplicar. | Solo detecta líneas cortas y casillas cuadradas; conviene revisar las propuestas. |
-| Marcas | Añadir marcas de agua y números de página. | El resultado pasa a formar parte del PDF. |
-| Encabezado y pie | Texto a izquierda, centro y derecha con {page}, {pages}, {date} y {filename}; márgenes, color y rango de páginas. | Texto en una sola línea; no ajusta el contenido de la página, así que puede solaparse con él. |
-| Numeración Bates | Prefijo, sufijo, número inicial, dígitos y posición, sobre todas las páginas o un rango. | Se escribe en el contenido de la página; no se puede reasignar desde la aplicación salvo deshaciendo. |
-| Sellos | Sellos predefinidos o una imagen, como anotación de sello quitable o dibujados en la página; se colocan con un clic (centrados) o arrastrando el tamaño. | El aspecto del sello como anotación depende del lector. |
-| Etiquetas de página | Numeración por rangos (arábiga, romana, letras, prefijo) que se muestra en las miniaturas. | Solo cambia las etiquetas lógicas; no renumera el texto impreso en las páginas. |
-| Insertar páginas | Página en blanco (A4, Carta, A3, A5 o medida propia), imagen como página y duplicado con copias. | Las imágenes se insertan como una sola página, sin OCR. |
-| Aplanar | Incorpora anotaciones y campos de formulario al contenido de la página. | Los campos dejan de ser editables; se puede deshacer en la sesión. |
-| Optimizar tamaño | Reduce la resolución y recomprime imágenes, limpia objetos sin uso y, si se quiere, retira metadatos. Muestra el tamaño estimado antes de aplicar y se ejecuta en un proceso aparte. | El tamaño final al guardar puede variar. Reducir ppp es una pérdida de calidad: guarda una copia si dudas. Si no se puede reducir, no cambia nada. |
-| Comprobar documento | Informe de páginas escaneadas, fuentes no incrustadas, etiquetas de accesibilidad, título, idioma y JavaScript; doble clic lleva a la página. | Es una revisión rápida, no una validación PDF/UA ni PDF/A. |
-| Comprobar accesibilidad | Informe por elemento (título, idioma, etiquetas, páginas sin texto, texto alternativo, marcadores) con corrección de título e idioma en un clic y exportación a texto. | Es una revisión rápida, no una validación PDF/UA. |
-| Comparar texto | Diferencias de líneas de texto por página entre el documento abierto y otro PDF. | Compara por número de página; no ve imágenes ni formato (para eso está Comparar PDFs). |
-| Información | Editar metadatos y gestionar archivos adjuntos. | No es una auditoría completa de todos los datos ocultos de un PDF. |
-| Limpieza | Eliminar metadatos, adjuntos, JavaScript, enlaces y otros elementos mediante la operación de saneamiento. | Puede modificar formularios y eliminar contenido útil; revisa la copia resultante. |
-| Protección | Contraseñas de apertura y de propietario con cifrado AES-256. Al guardar se conservan el método, los permisos y las contraseñas del archivo original. Si no se conoce la contraseña de propietario, se ofrece introducirla, proteger con contraseñas nuevas o guardar una copia sin protección. El diálogo de contraseña permite mostrar lo escrito y muestra los errores sin cerrarse. | Los permisos de impresión, edición y copia dependen de que el lector los respete. La contraseña de propietario original no se puede recuperar ni inferir. Quien conozca la de apertura pero no la de propietario no puede conservar las restricciones. |
-| OCR | OCR local con Tesseract incluido en la aplicación y capa de texto; modelos de español, inglés, francés, alemán y portugués; enderezado y detección de orientación opcionales; páginas escaneadas y mixtas; función reutilizable `ocr_file` para lotes. | En una ejecución desde el código fuente requiere Tesseract instalado. El enderezado corrige hasta unos 10° y tarda más. La detección de coincidencias evita duplicar texto existente; los errores de reconocimiento necesitan revisión. |
-| Office → PDF | Conversión mediante LibreOffice. | Requiere LibreOffice; no garantiza el mismo diseño que Microsoft Office. |
-| PDF → DOCX | Exportación de texto extraído. | No mantiene fielmente la maquetación del PDF. |
-| PDF → XLSX | Exportación de tablas detectadas; texto en filas cuando no hay tablas. | La detección depende de la estructura visual; no convierte cualquier página en una tabla correcta. |
-| PDF → PPTX | Una imagen de página por diapositiva. | Los elementos de la página no se convierten en objetos editables. |
-| Comparación | Vista de ambos documentos y diferencias visuales en magenta; navegación por cambios e informe ZIP; procesamiento cancelable. | Compara por número de página, con rasterización limitada a 110 ppp y 1400 px de lado. Cambios pequeños pueden quedar por debajo de la resolución o tolerancia. No compara metadatos, enlaces, firmas ni contenido oculto; no alinea páginas insertadas automáticamente. |
-| Historial | Deshacer y rehacer cambios de la sesión. Registro de los últimos 20 mensajes de la barra de estado. | Deshacer no sobrevive al cierre del documento; la recuperación de cambios se describe en Documentos. |
-| Documentos | Pestañas para varios PDF abiertos a la vez, cada una con su historial, página, zoom y búsqueda. Autoguardado periódico y ofrecimiento de recuperar cambios no guardados al iniciar. Copia `.bak` opcional al guardar, Guardar copia y Revertir. Recientes con fecha y miniatura, y memoria de vista por archivo. | La copia de recuperación es local y se elimina al guardar o cerrar correctamente. No sustituye a guardar el archivo. Los documentos protegidos no se autoguardan: se avisa una vez para no escribir una copia sin cifrar. |
-| Medir | Medición de distancias sobre la página, con escala. | La precisión depende de la escala configurada. No es una medición certificada. |
-| Capas | Muestra u oculta las capas de contenido opcional que trae el PDF. | Solo alterna capas existentes; no crea ni edita capas. |
-| Acciones guiadas | Asistentes paso a paso para tareas frecuentes, como combinar, comprimir, censurar o firmar. | Cada paso usa una herramienta existente y sus límites son los de esa herramienta. |
-| Impresión | Vista previa antes de imprimir; las páginas se generan a la resolución de la impresora (entre 150 y 600 ppp). | Depende del controlador y de la impresora seleccionados. |
-| Lotes y recetas | Procesa carpetas o grupos de PDF con una receta: lista ordenada de pasos (anonimizar, OCR, optimizar, limpiar metadatos, marca de agua, numeración, Bates, girar, recortar, firmar con certificado, exportar texto). Incluye tres recetas predefinidas, editor de pasos, guardar/importar/exportar en JSON y progreso con cancelación. También sin ventana: `--batch` y `--watch` (carpeta vigilada cada 5 s). | Los originales no se modifican y, si un archivo falla, se sigue con el siguiente. La contraseña del certificado se pide al ejecutar y nunca se guarda. Los PDF cifrados no se procesan. Cada archivo se procesa en el mismo proceso, uno tras otro. |
+| Reading | Render pages, zoom, search text and navigate bookmarks. Full-page, fit-width, 100%, two-page and continuous scrolling views. Each document remembers its page, zoom and scroll position. | Search requires a text layer; scans may need OCR. |
+| Find and replace | Bar with previous and next, match counter and search options; replace text in the document. | Only finds and replaces text with a text layer. Replacement follows the editing limits in the Text row. |
+| Text | Select characters/words/lines; type on the page; edit, move and delete existing PDF blocks; change basic style. | Does not reflow other blocks like a Word document. Original fonts may be substituted. Text slanted within a page cannot yet be edited directly. |
+| Images | Insert, select, move, resize, replace and delete individual images, with history. | Editing is limited to supported direct images; nested or inline images, or images with complex graphics states, may not be supported. Replacing keeps the area and may stretch the new image. Does not rebuild the original layout document. |
+| Links | Create, edit, delete and list web/email links and links to internal pages; explicit opening from the menu. | Other destination types can be deleted, but not edited or run. |
+| Annotations | Highlight, notes, underline, strikeout, shapes, ink, lines, arrows and text boxes. Notes have reply threads and status, and are managed in the comments panel. | Appearance may vary depending on the PDF reader. |
+| Redaction | Mark areas to redact and apply the redactions: text, images and graphics under the mark are removed, as well as links, form fields and annotations that touch it, and metadata, XMP and bookmarks that quote the redacted text. | Unapplied marks redact nothing: the text stays in the file, so saving, exporting, extracting, splitting or signing with pending marks asks for confirmation. Review attachments and other areas before sharing sensitive information. |
+| Find and redact | Searches for patterns (cards with Luhn check, IBAN, DNI/NIE, NIF/CIF, phone numbers, dates, emails) or your own text/regular expressions, marks the chosen matches and then offers to apply them. | Detects what is written as text: does not read scanned images (use OCR first). There may be false positives and false negatives; review the list. |
+| Anonymize document | Wizard that detects personal data (patterns from Find and redact, plus Social Security, license plate, IP and your own terms or expressions), redacts it, removes metadata, XMP, bookmarks, attachments and annotations that quote it, rewrites a full copy without history, and verifies the result. TXT or JSON report that does not repeat the removed data. | Verification does not detect text in fonts with a glyph subset or in images without OCR. Encrypted documents are not supported. The original is not modified. |
+| Pages | Organize, delete, duplicate, merge, split with options, extract, crop and rotate. Merge supports dropping several PDFs onto the window. | Cropping changes the visible area; it must not be used to redact sensitive data. |
+| Forms | Create and fill AcroForm fields; text and checkboxes can be filled directly on the page. | Does not include XFA forms or all JavaScript form scripts. |
+| Automatic fields | Detects lines and checkboxes in forms without fields and proposes creating them, with preview and selection before applying. | Only detects short lines and square checkboxes; review the proposals. |
+| Watermarks | Add watermarks and page numbers. | The result becomes part of the PDF. |
+| Header and footer | Text on the left, center and right with {page}, {pages}, {date} and {filename}; margins, color and page range. | Single-line text; does not adjust the page content, so it may overlap with it. |
+| Bates numbering | Prefix, suffix, starting number, digits and position, on all pages or a range. | Written into the page content; cannot be renumbered from the application except by undoing. |
+| Stamps | Predefined stamps or an image, as a removable stamp annotation or drawn on the page; placed with one click (centered) or by dragging to set the size. | How a stamp looks as an annotation depends on the reader. |
+| Page labels | Numbering by ranges (Arabic, Roman, letters, prefix) shown in the thumbnails. | Only changes logical labels; does not renumber text printed on the pages. |
+| Insert pages | Blank page (A4, Letter, A3, A5 or custom size), image as a page, and duplicates with copies. | Images are inserted as a single page, without OCR. |
+| Flatten | Incorporates annotations and form fields into the page content. | Fields stop being editable; can be undone within the session. |
+| Optimize size | Reduces resolution and recompresses images, removes unused objects and, if desired, strips metadata. Shows the estimated size before applying and runs in a separate process. | The final size when saving may vary. Lowering ppi loses quality: save a copy if in doubt. If it cannot be reduced, nothing changes. |
+| Check document | Report on scanned pages, non-embedded fonts, accessibility tags, title, language and JavaScript; double-click jumps to the page. | A quick review, not PDF/UA or PDF/A validation. |
+| Check accessibility | Per-item report (title, language, tags, pages without text, alternative text, bookmarks) with one-click title and language fixes and export to text. | A quick review, not PDF/UA validation. |
+| Compare text | Line-by-line text differences per page between the open document and another PDF. | Compares by page number; does not see images or formatting (for that, see Compare PDFs). |
+| Information | Edit metadata and manage attachments. | Not a complete audit of all hidden data in a PDF. |
+| Cleanup | Remove metadata, attachments, JavaScript, links and other elements using the sanitize operation. | May modify forms and delete useful content; review the resulting copy. |
+| Protection | Open and owner passwords with AES-256 encryption. When saving, the original file's method, permissions and passwords are preserved. If the owner password is not known, you are offered the option to enter it, protect with new passwords, or save an unprotected copy. The password dialog lets you show what was typed and shows errors without closing. | Print, edit and copy permissions depend on the reader respecting them. The original owner password cannot be recovered or inferred. Anyone who knows the open password but not the owner password cannot keep the restrictions. |
+| OCR | Local OCR with Tesseract included in the application and a text layer; Spanish, English, French, German and Portuguese models; optional deskew and orientation detection; scanned and mixed pages; reusable `ocr_file` function for batches. | When running from source code, requires Tesseract installed. Deskew corrects up to about 10° and takes longer. Match detection avoids duplicating existing text; recognition errors need review. |
+| Office → PDF | Conversion via LibreOffice. | Requires LibreOffice; does not guarantee the same layout as Microsoft Office. |
+| PDF → DOCX | Export of extracted text. | Does not faithfully preserve the PDF layout. |
+| PDF → XLSX | Export of detected tables; text in rows when there are no tables. | Detection depends on the visual structure; it does not turn every page into a correct table. |
+| PDF → PPTX | One page image per slide. | Page elements are not converted into editable objects. |
+| Comparison | View of both documents and visual differences in magenta; navigation between changes and ZIP report; cancelable processing. | Compares by page number, with rasterization limited to 110 ppi and 1400 px on the longest side. Small changes may fall below the resolution or tolerance. Does not compare metadata, links, signatures or hidden content; does not automatically align inserted pages. |
+| History | Undo and redo changes within the session. Log of the last 20 status bar messages. | Undo does not survive closing the document; change recovery is described under Documents. |
+| Documents | Tabs for several PDFs open at once, each with its own history, page, zoom and search. Periodic autosave and an offer to recover unsaved changes on startup. Optional `.bak` copy when saving, Save a copy and Revert. Recent files with date and thumbnail, and per-file view memory. | The recovery copy is local and is deleted when saving or closing properly. It does not replace saving the file. Protected documents are not autosaved: you are warned once so that an unencrypted copy is not written. |
+| Measure | Distance measurement on the page, with scale. | Accuracy depends on the configured scale. Not a certified measurement. |
+| Layers | Shows or hides the optional content layers included in the PDF. | Only toggles existing layers; does not create or edit layers. |
+| Guided actions | Step-by-step wizards for frequent tasks, such as merging, compressing, redacting or signing. | Each step uses an existing tool and its limits are those of that tool. |
+| Printing | Print preview; pages are generated at the printer's resolution (between 150 and 600 ppi). | Depends on the selected driver and printer. |
+| Batches and recipes | Processes folders or groups of PDFs with a recipe: an ordered list of steps (anonymize, OCR, optimize, clean metadata, watermark, numbering, Bates, rotate, crop, sign with certificate, export text). Includes three predefined recipes, a step editor, save/import/export as JSON and progress with cancellation. Also without a window: `--batch` and `--watch` (folder watched every 5 s). | Originals are not modified and, if a file fails, processing continues with the next one. The certificate password is requested at run time and is never saved. Encrypted PDFs are not processed. Each file is processed in the same process, one after another. |
 
-## Seguridad de los archivos de salida
+## Security of output files
 
-- Un PDF abierto con contraseña se guarda con la misma protección. La contraseña de propietario generada al proteger se muestra una sola vez; no se almacena en ningún sitio.
-- Exportar (TXT, DOCX, XLSX, PPTX, PNG), extraer páginas, dividir y firmar desde un documento protegido genera archivos **sin contraseña ni restricciones**; la aplicación avisa antes de cada operación.
-- Guardar, exportar, extraer, dividir, firmar y las tareas de OCR o comparación se detienen si hay censuras sin aplicar, y ofrecen aplicarlas.
-- Los trabajos en segundo plano usan carpetas temporales `pdf-editor-job-*` que se eliminan al terminar; al iniciar se borran las que hayan quedado de ejecuciones interrumpidas con más de un día.
+- A PDF opened with a password is saved with the same protection. The owner password generated when protecting is shown only once; it is not stored anywhere.
+- Exporting (TXT, DOCX, XLSX, PPTX, PNG), extracting pages, splitting and signing from a protected document produces files **with no password or restrictions**; the application warns before each operation.
+- Saving, exporting, extracting, splitting, signing and OCR or comparison tasks stop if there are unapplied redactions, and offer to apply them.
+- Background jobs use temporary folders `pdf-editor-job-*` that are deleted when they finish; on startup, any left over from interrupted runs older than one day are removed.
 
-## Firma digital
+## Digital signatures
 
-La firma PKCS#12 usa pyHanko y genera una copia firmada. Puedes elegir entre firma **invisible** (solo queda constancia en el archivo) y firma **visible**: eliges la página, dibujas arrastrando el rectángulo y decides qué muestra (nombre del firmante del certificado, fecha, motivo, lugar y, opcionalmente, una de tus imágenes de firma guardadas).
+PKCS#12 signing uses pyHanko and produces a signed copy. You can choose between an **invisible** signature (a record is kept only in the file) and a **visible** signature: you choose the page, draw the rectangle by dragging, and decide what it shows (the certificate signer's name, date, reason, location and, optionally, one of your saved signature images).
 
-Firmar un documento que ya tiene firmas añade una revisión incremental: las firmas anteriores siguen siendo válidas y la aplicación lo avisa antes de firmar. Modificar o volver a guardar un PDF firmado puede invalidar sus firmas existentes.
+Signing a document that already has signatures adds an incremental revision: the earlier signatures remain valid, and the application warns you before signing. Modifying or re-saving a signed PDF may invalidate its existing signatures.
 
-"Examinar firmas…" valida cada firma de forma local y muestra: integridad (si el documento se modificó tras firmar), validez criptográfica, estado de la cadena de confianza frente a los certificados raíz del sistema o de certifi (si no se puede verificar: "no verificada: certificado autofirmado o raíz desconocida", sin tratarlo como un fallo) y sello de tiempo, si lo hay. **La revocación no se comprueba**, porque no se consulta ninguna red.
+"Inspect signatures…" validates each signature locally and shows: integrity (whether the document was modified after signing), cryptographic validity, the status of the trust chain against the system root certificates or certifi (if it cannot be verified: "not verified: self-signed certificate or unknown root", not treated as a failure) and the timestamp, if any. **Revocation is not checked**, because no network is queried.
 
-Límites: no se usan servicios de terceros ni de Adobe, no hay firma remota ni envío a firmantes, y el resultado no equivale a una firma electrónica cualificada eIDAS. Revisa los documentos importantes con un lector independiente. La API sin interfaz está en `pdf_editor/signing.py`: `sign_file(path_in, path_out, p12, password, field_spec, appearance) -> Report` y `validate_file(path) -> list[SignatureInfo]`.
+Limits: no third-party services are used, there is no remote signing or sending to signers, and the result is not equivalent to a qualified eIDAS electronic signature. Review important documents with an independent reader. The headless API is in `pdf_editor/signing.py`: `sign_file(path_in, path_out, p12, password, field_spec, appearance) -> Report` and `validate_file(path) -> list[SignatureInfo]`.
 
-Para firmar un documento cifrado debes guardar explícitamente una copia sin contraseña. La aplicación no retira la protección de forma implícita para firmar. Las tareas largas (OCR, conversión Office, exportar, dividir, firmar, imágenes, lotes, optimizar y comprobar documento) muestran su progreso y se pueden cancelar; al cancelar se borran las salidas parciales.
+To sign an encrypted document you must explicitly save an unencrypted copy. The application does not silently remove the protection in order to sign. Long-running tasks (OCR, Office conversion, export, split, sign, images, batches, optimize and check document) show their progress and can be canceled; canceling deletes partial outputs.
 
-## Funciones de Acrobat Pro que no están cubiertas
+## Features not covered
 
-La edición directa se orienta a texto digital. En escaneos, OCR crea una capa buscable y no reconstruye la imagen original como un documento editable de Office. Editar esa capa no equivale a sustituir el contenido gráfico del escaneo.
+Direct editing targets digital text. For scans, OCR creates a searchable layer and does not rebuild the original image as an editable Office document. Editing that layer does not amount to replacing the graphic content of the scan.
 
-No se ofrece paridad completa con Acrobat Pro. Estos límites están fuera de alcance:
+Full feature parity with commercial PDF editors is not offered. The following are out of scope:
 
-- **Sellos de tiempo**: opcionales y desactivados por defecto; hay que indicar la autoridad de sellado y exigen conexión. No hay sellado de Adobe.
-- **PDF/A y PDF/X**: no se convierte ni se certifica el cumplimiento. "Comprobar documento" es una revisión rápida, no una validación.
-- **JavaScript de formularios y XFA**: no se ejecutan scripts de formulario ni se editan formularios XFA.
-- **PDF 3D y contenido multimedia**.
-- **Compartir en la nube**: no hay servicios de Adobe, revisión en línea ni envío de documentos o firmas a terceros.
-- **Otros**: aplicaciones móviles, carteras PDF y el etiquetado automático o la edición de etiquetas de accesibilidad.
+- **Timestamps**: optional and disabled by default; you must specify the timestamp authority, and they require a network connection.
+- **PDF/A and PDF/X**: conformance is not converted or certified. "Check document" is a quick review, not a validation.
+- **Form JavaScript and XFA**: form scripts are not executed and XFA forms are not edited.
+- **PDF 3D and multimedia content**.
+- **Cloud sharing**: there are no cloud services, online review, or sending of documents or signatures to third parties.
+- **Other**: mobile apps, PDF portfolios, and automatic tagging or editing of accessibility tags.
 
-Tampoco se garantiza compatibilidad con todos los documentos complejos, formularios dinámicos, fuentes o perfiles de color.
-
-Referencia de producto: [comparativa oficial de Acrobat](https://www.adobe.com/acrobat/pricing/compare-versions.html) y [herramientas de Acrobat](https://helpx.adobe.com/acrobat/using/explore-acrobat-tools.html). Estas referencias orientan el alcance; no demuestran que la nueva aplicación reproduzca cada función.
+Compatibility with all complex documents, dynamic forms, fonts or color profiles is not guaranteed either.

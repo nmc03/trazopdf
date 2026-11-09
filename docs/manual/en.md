@@ -847,7 +847,7 @@ Check the latest messages with **View > Message history**, and see **Help > Abou
 
 ## 15. Known limitations
 
-TrazoPDF covers common PDF tasks. It is not a replica of Adobe Acrobat Pro. These are the main limitations.
+TrazoPDF covers common PDF tasks. These are the main limitations.
 
 ### Editing
 
@@ -896,4 +896,4 @@ PDF/A and PDF/X, 3D and multimedia content, cloud sharing and online review, mob
 
 ---
 
-TrazoPDF is free software under the AGPL-3.0-or-later license. It contains no code, interface or graphic assets from Adobe.
+TrazoPDF is free software under the AGPL-3.0-or-later license.

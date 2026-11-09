@@ -1,75 +1,75 @@
-# Historial de cambios
+# Changelog
 
-El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [0.5.0] - 2026-11-08
 
-### Añadido
-- **TrazoPDF**: la aplicación pasa a llamarse TrazoPDF (ejecutable, instalador y carpeta de ajustes; los ajustes de versiones previas no se migran).
-- Interfaz y documentación en español, inglés, francés, alemán y portugués: el idioma se elige en Ayuda > Idioma (o `PDFEDITOR_LANG`) y se aplica al reiniciar. README y manual de usuario en los cinco idiomas.
-- Anonimizar documento: eliminación irreversible de texto, imágenes, metadatos, anotaciones, adjuntos y datos ocultos, con vista previa, verificación posterior e informe.
-- Lotes y recetas: cadenas de pasos (11 tipos, con recetas predefinidas) aplicadas a carpetas desde la interfaz o por línea de comandos (`--batch`, `--watch`) con códigos de salida 0/1/2 y política de conflictos.
-- OCR integrado y 100 % local: Tesseract se incluye en la aplicación con modelos de español, inglés, francés, alemán y portugués, enderezado y detección de orientación.
-- Firma electrónica visible con campo y apariencia configurables, y validación de firmas existentes; la clave se puede pasar por `PDFEDITOR_SIGN_PASSWORD` en lotes.
-- Atajo K para el campo de formulario y F para rellenar.
-- Instalador de Windows (sin firmar) y autodespliegue de versiones al fusionar en `main`.
+### Added
+- **TrazoPDF**: the application is now called TrazoPDF (executable, installer and settings folder; settings from earlier versions are not migrated).
+- Interface and documentation in Spanish, English, French, German and Portuguese: the language is chosen in Help > Language (or `PDFEDITOR_LANG`) and applied on restart. README and user manual in all five languages.
+- Anonymize document: irreversible removal of text, images, metadata, annotations, attachments and hidden data, with preview, post-verification and report.
+- Batches and recipes: chains of steps (11 types, with predefined recipes) applied to folders from the interface or from the command line (`--batch`, `--watch`) with exit codes 0/1/2 and a conflict policy.
+- Built-in OCR, 100% local: Tesseract is included in the application with Spanish, English, French, German and Portuguese models, deskew and orientation detection.
+- Visible electronic signature with configurable field and appearance, and validation of existing signatures; the key can be passed via `PDFEDITOR_SIGN_PASSWORD` in batches.
+- K shortcut for the form field and F to fill.
+- Windows installer (unsigned) and automatic deployment of versions when merged into `main`.
 
-- Varios PDF abiertos a la vez, en pestañas sobre el lienzo: cada una conserva su página, zoom, desplazamiento, búsqueda, historial de deshacer y copia de recuperación. Abrir un archivo ya abierto activa su pestaña; Ctrl+Tab y Ctrl+Mayús+Tab cambian de pestaña, Alt+1 a Alt+9 saltan a una y Ctrl+W cierra la actual.
-- Comprobar accesibilidad (Herramientas): informe por elemento con corrección de título e idioma en un clic y exportación a texto.
-- Firma digital con sello de tiempo opcional: se activa a mano, con la dirección de la autoridad que elija el usuario; sin ella no se envía nada a la red.
-- Vista continua y de dos páginas: la selección de texto cruza páginas, los campos de formulario se rellenan en cualquier página visible y los campos detectados automáticamente se marcan en todas.
-- Cada pestaña recuerda su panel lateral y la selección de miniaturas; las pestañas se reordenan arrastrando.
-- Interfaz renovada: raíl de herramientas con grupos e iconos propios, barra superior con navegador de páginas y zoom en píldoras, panel de páginas con tarjetas, pantalla de bienvenida con recientes y tema claro, oscuro o del sistema.
-- Herramientas de documento, disponibles en el raíl (grupo Herramientas) y en los menús, todas con deshacer y rehacer: encabezado y pie de página, numeración Bates, buscar y censurar datos sensibles, optimizar tamaño, aplanar anotaciones y formularios, etiquetas de página (visibles en las miniaturas), insertar páginas (en blanco, desde imagen o duplicadas), sellos colocados con un clic o arrastrando, comprobar documento y comparar texto entre dos PDF.
-- Optimizar tamaño y Comprobar documento se ejecutan en un proceso aparte, sin bloquear la ventana.
-- Cuadro «Acerca de» con versión, licencia, enlaces a LICENSE y THIRD-PARTY.md y diagnóstico de Tesseract y LibreOffice (se pueden indicar con `PDFEDITOR_TESSERACT` y `PDFEDITOR_SOFFICE`).
-- Al abrir un PDF con restricciones se ofrece introducir la contraseña de propietario para poder guardarlo conservándolas.
-- Al proteger un documento se puede elegir la contraseña de propietario; si se deja vacía se genera una segura y se muestra una sola vez, con botón para copiarla.
-- Documentos: autoguardado periódico con recuperación de cambios no guardados al iniciar, copia `.bak` opcional al guardar, Guardar copia (sin cambiar el documento abierto) y Revertir.
-- Vista: desplazamiento continuo y vista de dos páginas, con página, zoom y desplazamiento recordados por archivo. Recientes con fecha y miniatura, y opción de quitarlos de la lista.
-- Páginas: Dividir con opciones de reparto, y Archivo > Exportar como para texto, Word, Excel, PowerPoint e imágenes. Soltar varios PDF sobre la ventana para combinarlos.
-- Buscar y reemplazar texto del documento, con navegación entre coincidencias.
-- Anotaciones: herramientas Línea, Flecha y Cuadro de texto. Los comentarios tienen autor, respuestas y estado, y se gestionan en un panel propio.
-- Medir distancias con escala, Capas para mostrar u ocultar capas opcionales, y acciones guiadas para tareas frecuentes.
-- Diálogo de contraseña con botón Mostrar y errores en línea.
-- Ayuda > Atajos de teclado (F1), historial de los últimos 20 mensajes de la barra de estado, Ctrl+Y para rehacer y Ctrl+A para seleccionar todo según el foco.
+- Several PDFs open at once, in tabs above the canvas: each keeps its page, zoom, scroll position, search, undo history and recovery copy. Opening a file that is already open activates its tab; Ctrl+Tab and Ctrl+Shift+Tab switch tabs, Alt+1 to Alt+9 jump to one, and Ctrl+W closes the current one.
+- Check accessibility (Tools): per-item report with one-click title and language fixes and export to text.
+- Digital signature with optional timestamp: enabled manually, with the address of the authority chosen by the user; without it, nothing is sent over the network.
+- Continuous and two-page view: text selection spans pages, form fields can be filled on any visible page, and automatically detected fields are marked on all of them.
+- Each tab remembers its side panel and thumbnail selection; tabs can be reordered by dragging.
+- Redesigned interface: tool rail with groups and its own icons, top bar with page navigator and zoom in pills, page panel with cards, welcome screen with recent files, and light, dark or system theme.
+- Document tools, available in the rail (Tools group) and in the menus, all with undo and redo: header and footer, Bates numbering, find and redact sensitive data, optimize size, flatten annotations and forms, page labels (visible in the thumbnails), insert pages (blank, from image or duplicated), stamps placed with one click or by dragging, check document, and compare text between two PDFs.
+- Optimize size and Check document run in a separate process, without blocking the window.
+- About dialog with version, license, links to LICENSE and THIRD-PARTY.md, and diagnostics for Tesseract and LibreOffice (which can be set with `PDFEDITOR_TESSERACT` and `PDFEDITOR_SOFFICE`).
+- When opening a PDF with restrictions, you are offered the option to enter the owner password so that it can be saved while keeping them.
+- When protecting a document you can choose the owner password; if left empty, a secure one is generated and shown only once, with a button to copy it.
+- Documents: periodic autosave with recovery of unsaved changes on startup, optional `.bak` copy when saving, Save a copy (without changing the open document) and Revert.
+- View: continuous scrolling and two-page view, with page, zoom and scroll position remembered per file. Recent files with date and thumbnail, and an option to remove them from the list.
+- Pages: Split with distribution options, and File > Export as to text, Word, Excel, PowerPoint and images. Drop several PDFs onto the window to merge them.
+- Find and replace text in the document, with navigation between matches.
+- Annotations: Line, Arrow and Text box tools. Comments have author, replies and status, and are managed in a dedicated panel.
+- Measure distances with scale, Layers to show or hide optional layers, and guided actions for frequent tasks.
+- Password dialog with a Show button and inline errors.
+- Help > Keyboard shortcuts (F1), history of the last 20 status bar messages, Ctrl+Y to redo and Ctrl+A to select all depending on focus.
 
-### Cambiado
-- Guardar conserva el cifrado, los permisos y las contraseñas del archivo original. Si no se puede conservar la protección, se ofrece introducir la contraseña de propietario, proteger con contraseñas nuevas o guardar una copia sin protección.
-- Aplicar censuras también elimina los enlaces, campos de formulario y anotaciones que quedan bajo las marcas, y los metadatos que citan el texto censurado; el aviso lo explica.
-- Las exportaciones, extracciones, divisiones y copias firmadas de un documento protegido avisan de que el resultado no tendrá contraseña.
-- La ventana muestra la versión real de la aplicación.
+### Changed
+- Save keeps the encryption, permissions and passwords of the original file. If the protection cannot be kept, you are offered the option to enter the owner password, protect with new passwords, or save an unprotected copy.
+- Applying redactions also removes the links, form fields and annotations that lie under the marks, and the metadata that quotes the redacted text; the warning explains this.
+- Exports, extractions, splits and signed copies of a protected document warn that the result will have no password.
+- The window shows the application's actual version.
 
-### Corregido
-- Guardar, exportar, extraer, dividir, firmar y las tareas de OCR o comparación ya no escriben texto que sigue bajo censuras sin aplicar sin avisar; se ofrece aplicarlas primero.
-- La apertura de PDF cifrados no consulta el documento ya abierto, lo que evita lecturas erróneas tras pedir la contraseña.
-- Eliminar un comentario desde la lista de anotaciones se puede deshacer y se revierte si falla.
-- Las carpetas temporales de trabajos interrumpidos se eliminan al iniciar si tienen más de un día.
+### Fixed
+- Save, export, extract, split, sign and OCR or comparison tasks no longer write text that is still under unapplied redactions without warning; you are offered to apply them first.
+- Opening encrypted PDFs no longer queries the document already open, which avoids misreads after requesting the password.
+- Deleting a comment from the annotations list can be undone and is reverted if it fails.
+- Temporary folders from interrupted jobs are removed on startup if they are more than one day old.
 
 ## [0.3.0] - 2026-10-18
 
-### Añadido
-- Manipulación de imágenes desde Editar PDF: selección, arrastre, esquinas para redimensionar, sustitución y eliminación. Cada operación afecta a una aparición concreta de la imagen, y las demás copias compartidas se conservan cuando la estructura del PDF lo permite.
-- Enlaces web, de correo y a páginas internas: creación por área, edición, eliminación, listado y apertura explícita.
-- Comparación visual de dos PDF en un proceso separado y cancelable, con tres vistas, navegación por cambios, zoom sincronizado y exportación del informe en ZIP.
+### Added
+- Image manipulation from Edit PDF: selection, dragging, corner handles for resizing, replacement and deletion. Each operation affects one specific occurrence of the image, and other shared copies are preserved when the PDF structure allows it.
+- Web, email and internal page links: creation by area, editing, deletion, listing and explicit opening.
+- Visual comparison of two PDFs in a separate, cancelable process, with three views, navigation between changes, synchronized zoom and ZIP report export.
 
-### Corregido
-- Coordenadas de los enlaces en páginas recortadas y giradas.
-- Una nueva comparación exige una carpeta de salida vacía, para no sobrescribir un informe anterior.
-- Las líneas se conservan al unir varios segmentos de texto compatibles en un bloque editable.
+### Fixed
+- Link coordinates on cropped and rotated pages.
+- A new comparison requires an empty output folder, so a previous report is not overwritten.
+- Lines are preserved when joining several compatible text segments into one editable block.
 
 ## [0.2.0]
 
-### Añadido
-- Selección de texto por caracteres, palabras y líneas, con copia y marcado (resaltado, subrayado, tachado).
-- Añadir texto haciendo clic sobre la página.
-- Edición de bloques de texto de PDF existentes: mover, editar en el sitio y eliminar, con control de tamaño, familia, color, negrita y cursiva.
-- Rellenado de campos de formulario AcroForm directamente sobre la página.
-- Panel de páginas plegable y miniaturas con etiquetas.
-- OCR de páginas escaneadas y mixtas, y conversión de Office a PDF, ambas canceladas sin perder el documento abierto.
+### Added
+- Text selection by characters, words and lines, with copy and markup (highlight, underline, strikeout).
+- Add text by clicking on the page.
+- Editing of existing PDF text blocks: move, edit in place and delete, with control of size, family, color, bold and italic.
+- Filling of AcroForm form fields directly on the page.
+- Collapsible page panel and thumbnails with labels.
+- OCR of scanned and mixed pages, and Office to PDF conversion, both cancelable without losing the open document.
 
-### Corregido
-- Reemplazo de texto sin aplicar censuras pendientes ni dibujar rectángulos blancos sobre fondos de color.
-- Caracteres de otros alfabetos que se convertían en signos de interrogación.
-- Extracción de páginas en el orden solicitado.
-- Los cambios de varios campos de un formulario forman una sola operación deshacible.
+### Fixed
+- Text replacement without applying pending redactions, and no white rectangles drawn over colored backgrounds.
+- Characters from other alphabets that were converted into question marks.
+- Page extraction in the requested order.
+- Changes to several form fields form a single undoable operation.

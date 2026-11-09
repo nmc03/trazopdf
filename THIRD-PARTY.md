@@ -1,50 +1,46 @@
-# Componentes de terceros
+# Third-party components
 
-TrazoPDF se distribuye bajo la licencia GNU Affero General Public License v3.0 o posterior (AGPL-3.0-or-later), que puedes leer en [LICENSE](LICENSE). Esa elección viene dada por PyMuPDF, que está bajo AGPL-3.0.
+TrazoPDF is distributed under the GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later), which you can read in [LICENSE](LICENSE). That choice is driven by PyMuPDF, which is licensed under AGPL-3.0.
 
-TrazoPDF usa bibliotecas de terceros. Las versiones exactas están fijadas en [requirements.txt](requirements.txt). La tabla resume las licencias declaradas por cada proyecto; los textos completos y los avisos incluidos en cada distribución prevalecen.
+TrazoPDF uses third-party libraries. The exact versions are pinned in [requirements.txt](requirements.txt). The table summarizes the licenses declared by each project; the full texts and the notices included in each distribution prevail.
 
-| Componente | Uso | Licencia | Fuente |
+| Component | Use | License | Source |
 | --- | --- | --- | --- |
-| PyMuPDF (y MuPDF) | Lectura, render y edición de PDF | AGPL-3.0 (o licencia comercial del autor) | https://github.com/pymupdf/PyMuPDF |
-| PySide6 / Qt | Interfaz gráfica | LGPL-3.0 (módulos usados por PySide6) | https://www.qt.io/ y https://doc.qt.io/qtforpython-6/licenses.html |
-| pyHanko | Firma digital PKCS#12 | MIT | https://github.com/MatthiasValvekens/pyHanko |
-| python-docx | Lectura y escritura de DOCX | MIT | https://github.com/python-openxml/python-docx |
-| python-pptx | Lectura y escritura de PPTX | MIT | https://github.com/scanny/python-pptx |
-| openpyxl | Lectura y escritura de XLSX | MIT | https://openpyxl.readthedocs.io/ |
-| pypdf | Operaciones auxiliares sobre PDF | BSD-3-Clause | https://github.com/py-pdf/pypdf |
-| Pillow | Tratamiento de imágenes | MIT-CMU (HPND) | https://github.com/python-pillow/Pillow |
-| Modelos tessdata_fast (español) | Reconocimiento OCR | Apache-2.0 | https://github.com/tesseract-ocr/tessdata_fast |
+| PyMuPDF (and MuPDF) | PDF reading, rendering and editing | AGPL-3.0 (or the author's commercial license) | https://github.com/pymupdf/PyMuPDF |
+| PySide6 / Qt | Graphical interface | LGPL-3.0 (modules used by PySide6) | https://www.qt.io/ and https://doc.qt.io/qtforpython-6/licenses.html |
+| pyHanko | PKCS#12 digital signing | MIT | https://github.com/MatthiasValvekens/pyHanko |
+| python-docx | DOCX reading and writing | MIT | https://github.com/python-openxml/python-docx |
+| python-pptx | PPTX reading and writing | MIT | https://github.com/scanny/python-pptx |
+| openpyxl | XLSX reading and writing | MIT | https://openpyxl.readthedocs.io/ |
+| pypdf | Auxiliary PDF operations | BSD-3-Clause | https://github.com/py-pdf/pypdf |
+| Pillow | Image processing | MIT-CMU (HPND) | https://github.com/python-pillow/Pillow |
+| tessdata_fast models (Spanish) | OCR recognition | Apache-2.0 | https://github.com/tesseract-ocr/tessdata_fast |
 
-El icono de TrazoPDF y el conjunto de iconos de la interfaz (`pdf_editor/icons.py`) son originales del proyecto.
+The TrazoPDF icon and the interface icon set (`pdf_editor/icons.py`) are original to the project.
 
-Los modelos de inglés y español se incluyen en `assets/tessdata/`. El origen del modelo de inglés es la instalación local de Tesseract; sus datos de procedencia están en [assets/tessdata/README.txt](assets/tessdata/README.txt).
+The English and Spanish models are included in `assets/tessdata/`. The origin of the English model is the local Tesseract installation; its provenance data is in [assets/tessdata/README.txt](assets/tessdata/README.txt).
 
-## Qt y PySide6 (LGPL-3.0)
+## Qt and PySide6 (LGPL-3.0)
 
-Qt se distribuye como bibliotecas dinámicas (DLL) separadas dentro de la carpeta `TrazoPDF` de la versión compilada en modo carpeta (onedir). No están fundidas con el ejecutable. Esto permite cumplir la LGPL-3.0:
+Qt is distributed as separate dynamic libraries (DLLs) inside the `TrazoPDF` folder of the build compiled in onedir mode. They are not merged into the executable. This makes it possible to comply with the LGPL-3.0:
 
-- Puedes sustituir las DLL de Qt y PySide6 por versiones modificadas o compatibles, y la aplicación las usará al arrancar.
-- Puedes reconstruir TrazoPDF a partir del código fuente de este repositorio con tus propias bibliotecas Qt siguiendo las instrucciones de [README.md](README.md).
-- El código fuente de Qt y de PySide6 está disponible en https://download.qt.io/ y en el repositorio de PySide/Shiboken de Qt (https://code.qt.io/).
+- You can replace the Qt and PySide6 DLLs with modified or compatible versions, and the application will use them at startup.
+- You can rebuild TrazoPDF from the source code of this repository with your own Qt libraries, following the instructions in [README.md](README.md).
+- The source code of Qt and PySide6 is available at https://download.qt.io/ and in the PySide/Shiboken repository of Qt (https://code.qt.io/).
 
-No se modifica el código de Qt ni de PySide6 en este proyecto.
+This project does not modify the Qt or PySide6 code.
 
-## Código fuente
+## Source code
 
-El código de TrazoPDF está en este repositorio y se publica bajo AGPL-3.0-or-later. Si distribuyes una copia modificada del programa, incluso como servicio accesible por red, debes ofrecer a sus usuarios el código fuente correspondiente en los términos de la AGPL. Los códigos fuente de las bibliotecas anteriores están en las fuentes indicadas en la tabla, con las versiones de [requirements.txt](requirements.txt).
+The TrazoPDF code is in this repository and is published under AGPL-3.0-or-later. If you distribute a modified copy of the program, even as a service accessible over a network, you must offer its users the corresponding source code under the terms of the AGPL. The source code of the libraries above is available from the sources indicated in the table, with the versions in [requirements.txt](requirements.txt).
 
-## Programas externos
+## External programs
 
-Estos programas no se incluyen en el paquete. Se usan si están instalados en el equipo:
+These programs are not included in the package. They are used if they are installed on the computer:
 
-- **Tesseract OCR** (Apache-2.0): reconocimiento de texto en páginas escaneadas. https://github.com/tesseract-ocr/tesseract
-- **LibreOffice** (MPL-2.0): conversión de documentos de Office a PDF. https://www.libreoffice.org/
+- **Tesseract OCR** (Apache-2.0): text recognition on scanned pages. https://github.com/tesseract-ocr/tesseract
+- **LibreOffice** (MPL-2.0): conversion of Office documents to PDF. https://www.libreoffice.org/
 
-## Icono
+## Icon
 
-El icono de TrazoPDF es original del proyecto.
-
-## Uso
-
-TrazoPDF es un programa libre y no tiene relación con Adobe ni con los productos de Adobe. Los nombres de Acrobat y de otros productos se mencionan solo como referencia de funciones.
+The TrazoPDF icon is original to the project.

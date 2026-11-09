@@ -1,110 +1,110 @@
 # DESIGN.md - TrazoPDF (Windows, Qt/QSS)
 
-Contrato de diseño para la interfaz en español. La cobertura funcional está en `docs/FEATURES.md`. Este archivo no afirma paridad con Acrobat.
+Design contract for the interface. Functional coverage is in `docs/FEATURES.md`.
 
-**Perfiles del toolkit design-system-library usados:** `catalog/linear.app/DESIGN.md` (superficies en capas con bordes de 1 px, un único acento cromático, anillo de foco, pestañas y selectores en forma de píldora, densidad de herramienta profesional), `catalog/raycast/DESIGN.md` (jerarquía de superficies oscuras, bordes finos, radios de 6 a 10 px, lista de comandos con fila activa suave) y `catalog/figma/DESIGN.md` (herramienta de lienzo con barra de herramientas lateral por grupos y lienzo neutro). También se aplicaron las reglas de accesibilidad e interacción de `skills/web-design-guidelines` (foco visible, contraste, nombres accesibles, objetivos táctiles, `prefers-color-scheme`). Solo se adaptan principios: no se copian marcas, fuentes ni activos.
+**Profiles from the design-system-library toolkit used:** `catalog/linear.app/DESIGN.md` (layered surfaces with 1 px borders, a single chromatic accent, focus ring, pill-shaped tabs and selectors, professional tool density), `catalog/raycast/DESIGN.md` (dark surface hierarchy, thin borders, 6 to 10 px radii, command list with a soft active row) and `catalog/figma/DESIGN.md` (canvas tool with a side toolbar grouped by function and a neutral canvas). The accessibility and interaction rules from `skills/web-design-guidelines` were also applied (visible focus, contrast, accessible names, touch targets, `prefers-color-scheme`). Only principles are adapted; no brands, fonts or assets are copied.
 
-## 1. Principios
-- Neutros tranquilos con un único acento teal (acción primaria, herramienta activa, selección, foco y progreso).
-- La jerarquía se construye con superficies, bordes de 1 px y peso tipográfico. La única sombra es la de la página sobre el lienzo, pintada en `canvas.py`.
-- Raíl de herramientas a la izquierda (con etiquetas o solo iconos), documento al centro y panel de navegación a la derecha. El documento es el protagonista.
-- Sin degradados, sin emojis, sin decoración. Los iconos son una familia de línea propia.
-- Tema claro y oscuro con los mismos nombres de token.
+## 1. Principles
+- Calm neutrals with a single teal accent (primary action, active tool, selection, focus and progress).
+- Hierarchy is built with surfaces, 1 px borders and type weight. The only shadow is the page's shadow over the canvas, painted in `canvas.py`.
+- Tool rail on the left (with labels or icons only), document in the center and navigation panel on the right. The document is the protagonist.
+- No gradients, no emojis, no decoration. Icons are a family of their own, line-style.
+- Light and dark themes with the same token names.
 
-## 2. Paleta (tokens `@nombre`; `theme.py` los sustituye antes de aplicar el QSS)
-| Token | Claro | Oscuro | Uso |
+## 2. Palette (tokens `@name`; `theme.py` substitutes them before applying the QSS)
+| Token | Light | Dark | Use |
 |---|---|---|---|
-| accent | #0A7A6C | #3FC1AF | Primario, herramienta activa, foco, progreso |
-| accenthover | #08695D | #5ED0C0 | Hover del primario |
-| accentpressed | #065248 | #2DA695 | Pulsado |
-| accentsoft | #DDF0EC | #173C37 | Relleno de selección y herramienta activa |
-| onaccent | #FFFFFF | #04211D | Texto e icono sobre el acento |
-| canvas | #E6E9EB | #141819 | Fondo del área de documento |
-| surface0 | #F4F6F7 | #1B2022 | Ventana, raíl, panel de páginas |
-| surface1 | #FFFFFF | #22282B | Barra superior, campos, menús, tarjetas |
-| surface2 | #E9EDEE | #2C3437 | Hover neutro |
-| pill | #EEF1F2 | #2A3134 | Fondo de los grupos tipo píldora y del buscador |
-| border | #D9DFE1 | #343D41 | Divisores y bordes decorativos |
-| borderstrong | #848F93 | #7A878C | Bordes de campos (>= 3:1) |
-| ink | #1A2225 | #E9EEEF | Texto principal |
-| inkmuted | #4B575B | #A7B3B7 | Texto secundario e iconos de reposo |
-| inkdisabled | #8B9599 | #68757A | Deshabilitado |
-| danger | #B42318 | #F2796E | Error y acciones destructivas |
-| shadow | #0B1417 | #000000 | Sombra de la página y de las miniaturas |
+| accent | #0A7A6C | #3FC1AF | Primary, active tool, focus, progress |
+| accenthover | #08695D | #5ED0C0 | Primary hover |
+| accentpressed | #065248 | #2DA695 | Pressed |
+| accentsoft | #DDF0EC | #173C37 | Selection fill and active tool |
+| onaccent | #FFFFFF | #04211D | Text and icon on the accent |
+| canvas | #E6E9EB | #141819 | Document area background |
+| surface0 | #F4F6F7 | #1B2022 | Window, rail, page panel |
+| surface1 | #FFFFFF | #22282B | Top bar, fields, menus, cards |
+| surface2 | #E9EDEE | #2C3437 | Neutral hover |
+| pill | #EEF1F2 | #2A3134 | Background of pill-shaped groups and the search field |
+| border | #D9DFE1 | #343D41 | Dividers and decorative borders |
+| borderstrong | #848F93 | #7A878C | Field borders (>= 3:1) |
+| ink | #1A2225 | #E9EEEF | Primary text |
+| inkmuted | #4B575B | #A7B3B7 | Secondary text and resting icons |
+| inkdisabled | #8B9599 | #68757A | Disabled |
+| danger | #B42318 | #F2796E | Errors and destructive actions |
+| shadow | #0B1417 | #000000 | Page and thumbnail shadow |
 
-Contrastes verificados por `tests/test_theme.py` en ambos temas: texto >= 4.5:1 sobre sus superficies (incluido `inkmuted` sobre `surface2`, `pill` y `accentsoft`), `onaccent` sobre `accent` en reposo, hover y pulsado >= 4.5:1, y `accent` y `borderstrong` >= 3:1 como anillo de foco y borde de control.
+Contrasts verified by `tests/test_theme.py` in both themes: text >= 4.5:1 on its surfaces (including `inkmuted` on `surface2`, `pill` and `accentsoft`), `onaccent` on `accent` at rest, hover and pressed >= 4.5:1, and `accent` and `borderstrong` >= 3:1 as focus ring and control border.
 
-## 3. Tipografía (solo fuentes instaladas en Windows)
-- Familia: `"Segoe UI Variable Text", "Segoe UI", Arial`. Titulares: `"Segoe UI Variable Display", "Segoe UI"`.
-- Tamaños en pt para respetar la escala DPI de Qt.
+## 3. Typography (only fonts installed on Windows)
+- Family: `"Segoe UI Variable Text", "Segoe UI", Arial`. Headings: `"Segoe UI Variable Display", "Segoe UI"`.
+- Sizes in pt to respect Qt's DPI scaling.
 
-| Rol | pt | Peso |
+| Role | pt | Weight |
 |---|---|---|
-| title (bienvenida) | 21 | 600 |
+| title (welcome) | 21 | 600 |
 | subtitle | 10.5 | 400 |
-| heading (panel, marca) | 10-11 | 600 |
+| heading (panel, brand) | 10-11 | 600 |
 | body | 9.5 | 400 |
 | control | 9.5 | 500 |
-| section (grupos del raíl) | 8.5 | 600 |
-| caption (estado, miniaturas) | 8.5 | 400 |
+| section (rail groups) | 8.5 | 600 |
+| caption (status, thumbnails) | 8.5 | 400 |
 
-## 4. Espaciado, radios y tamaños
-- Base de 4 px: 4, 8, 12, 16, 24, 32.
-- Radios: controles 8, píldoras 10, menús y listas 10-12, tarjeta de bienvenida 16.
-- Barra superior: botones de 28 + borde de foco de 2. Iconos de 20 (18 dentro de píldoras).
-- Raíl: 240 expandido (mín. 224, máx. 300) y 56 compacto. Filas de herramienta de unos 26 px con icono de 18.
-- Panel derecho: 210 por defecto, mín. 176, máx. 300; 38 plegado.
-- Margen de la página en el lienzo: 32 unidades de escena por lado.
+## 4. Spacing, radii and sizes
+- 4 px base: 4, 8, 12, 16, 24, 32.
+- Radii: controls 8, pills 10, menus and lists 10-12, welcome card 16.
+- Top bar: 28 buttons + 2 focus border. Icons 20 (18 inside pills).
+- Rail: 240 expanded (min. 224, max. 300) and 56 compact. Tool rows of about 26 px with 18 icons.
+- Right panel: 210 by default, min. 176, max. 300; 38 collapsed.
+- Page margin on the canvas: 32 scene units per side.
 
-## 5. Iconos
-- `pdf_editor/icons.py`: cuadrícula de 24 px, trazo de 1.75 px, extremos y uniones redondeados, SVG en línea dibujados para este proyecto (no se usa ningún paquete de iconos externo).
-- Se renderizan con `QSvgRenderer` a 16, 20, 24, 32, 40, 48 y 64 px y se tiñen según el tema: reposo (`inkmuted` o `ink`), hover (`ink`), deshabilitado (`inkdisabled`) y activo (`accent` en el estado checked).
-- Cada herramienta, acción de la barra superior y acción de documento tiene su icono. Todo botón solo-icono lleva `toolTip` y `accessibleName`.
-- Al cambiar de tema `EditorWindow.apply_icons()` vuelve a teñir todos los iconos registrados con `bind_icon`.
+## 5. Icons
+- `pdf_editor/icons.py`: 24 px grid, 1.75 px stroke, rounded caps and joins, inline SVG drawn for this project (no external icon package is used).
+- Rendered with `QSvgRenderer` at 16, 20, 24, 32, 40, 48 and 64 px and tinted by theme: rest (`inkmuted` or `ink`), hover (`ink`), disabled (`inkdisabled`) and active (`accent` in the checked state).
+- Every tool, top-bar action and document action has its icon. Every icon-only button has a `toolTip` and an `accessibleName`.
+- When the theme changes, `EditorWindow.apply_icons()` re-tints all icons registered with `bind_icon`.
 
-## 6. Estados (todos los controles)
-- normal: borde `borderstrong` en campos; botones de barra y raíl sin borde.
-- hover: `surface2` (dentro de una píldora, `surface1`).
+## 6. States (all controls)
+- normal: `borderstrong` border on fields; top-bar and rail buttons have no border.
+- hover: `surface2` (inside a pill, `surface1`).
 - pressed: `accentsoft`.
-- checked/selected: `accentsoft` y texto `ink`. En el raíl se añade una barra de 3.5 px de `accent` en el borde izquierdo (pintada en `RailButton`) y el icono pasa a `accent`.
-- **focus (teclado): borde de 2 px `accent`, siempre visible. Nunca se usa `outline: none`.** Al abrir la ventana no hay ningún control con foco visible; aparece al pulsar Tab.
-- disabled: texto e icono `inkdisabled`, sin hover.
-- El primario usa fondo `accent` y texto `onaccent`; su foco usa un borde `ink`.
+- checked/selected: `accentsoft` and `ink` text. On the rail, a 3.5 px `accent` bar is added on the left edge (painted in `RailButton`) and the icon becomes `accent`.
+- **focus (keyboard): 2 px `accent` border, always visible. `outline: none` is never used.** When the window opens, no control has visible focus; it appears when Tab is pressed.
+- disabled: text and icon `inkdisabled`, no hover.
+- The primary button uses an `accent` background and `onaccent` text; its focus uses an `ink` border.
 
-## 7. Componentes y hooks (`setObjectName`)
-| objectName | Descripción |
+## 7. Components and hooks (`setObjectName`)
+| objectName | Description |
 |---|---|
-| `AppWindow` | Ventana principal |
-| `MainToolbar` | Barra superior: abrir, guardar, imprimir, deshacer, rehacer, navegador de páginas, zoom, buscador |
-| `Pill` | Grupo redondeado de controles relacionados (navegador de páginas, zoom) |
-| `SearchField` | Buscador con lupa inicial (clic o Intro busca) |
-| `ToolRail` | Raíl izquierdo (`QScrollArea`); propiedad `compact` cuando es de solo iconos |
-| `ModeButton` / `DocButton` | Filas del raíl (clase `RailButton`); `ModeButton` es checkable |
-| `DocButton` (grupo Herramientas) | Encabezado y pie, Bates, buscar y censurar, optimizar, aplanar, etiquetas, insertar página, sellos, comprobar y comparar texto; el raíl se desplaza si la ventana es baja |
-| `RailToggle` | Contrae o expande el raíl (Ctrl+B) |
-| `TextOptions` | Formato de texto contextual; si el raíl está compacto lo expande en esa sesión |
-| `DocumentArea` | Vista del documento (fondo canvas, página con sombra suave pintada en `PageView.drawBackground`) |
-| `PagesPanel`, `PagesHeader`, `CollapseButton` | Panel derecho plegable |
-| `ThumbnailList` | Miniaturas pintadas por `ThumbnailDelegate`: sombra, número de página y contorno `accent` al seleccionar |
-| `WelcomeView`, `WelcomeCard`, `DropZone`, `RecentList` | Pantalla de bienvenida; `RecentList` usa `RecentDelegate` (icono de archivo, nombre y carpeta) |
+| `AppWindow` | Main window |
+| `MainToolbar` | Top bar: open, save, print, undo, redo, page navigator, zoom, search |
+| `Pill` | Rounded group of related controls (page navigator, zoom) |
+| `SearchField` | Search field with leading magnifier (click or Enter searches) |
+| `ToolRail` | Left rail (`QScrollArea`); `compact` property when it is icon-only |
+| `ModeButton` / `DocButton` | Rail rows (class `RailButton`); `ModeButton` is checkable |
+| `DocButton` (Tools group) | Header and footer, Bates, find and redact, optimize, flatten, labels, insert page, stamps, check and compare text; the rail scrolls if the window is short |
+| `RailToggle` | Collapses or expands the rail (Ctrl+B) |
+| `TextOptions` | Contextual text formatting; if the rail is compact, it expands it for that session |
+| `DocumentArea` | Document view (canvas background, page with soft shadow painted in `PageView.drawBackground`) |
+| `PagesPanel`, `PagesHeader`, `CollapseButton` | Collapsible right panel |
+| `ThumbnailList` | Thumbnails painted by `ThumbnailDelegate`: shadow, page number and `accent` outline when selected |
+| `WelcomeView`, `WelcomeCard`, `DropZone`, `RecentList` | Welcome screen; `RecentList` uses `RecentDelegate` (file icon, name and folder) |
 
-## 8. Pantallas
-- **Bienvenida:** tarjeta centrada de 600 px como máximo con el icono de la aplicación, título, frase corta, «Abrir PDF» (primario), «Crear documento en blanco» (secundario), zona de arrastre y la lista de recientes cuando hay archivos. Se desplaza si la ventana es baja.
-- **Espacio de trabajo:** `ToolRail` | `DocumentArea` | `PagesPanel`. A 1024x768 el raíl sigue expandido y el panel derecho en 210. El raíl se desplaza si no caben todas las herramientas.
-- **Menú Ver:** ajustar a anchura, buscar, raíl compacto (Ctrl+B), panel de páginas (Ctrl+Mayús+B) y Tema (Sistema, Claro, Oscuro).
+## 8. Screens
+- **Welcome:** centered card, 600 px maximum, with the application icon, title, short line, "Open PDF" (primary), "Create blank document" (secondary), drop zone and the recent files list when there are files. It scrolls if the window is short.
+- **Workspace:** `ToolRail` | `DocumentArea` | `PagesPanel`. At 1024x768 the rail stays expanded and the right panel at 210. The rail scrolls if not all tools fit.
+- **View menu:** Fit to width, Find, compact rail (Ctrl+B), page panel (Ctrl+Shift+B) and Theme (System, Light, Dark).
 
-## 9. Tema
-- `theme.apply_theme(app, modo)` resuelve `system` con `QStyleHints.colorScheme()`, fija el esquema de Qt (barra de título oscura en Windows), instala paleta y QSS y reinicia los iconos. Se vuelve a aplicar cuando el sistema cambia de esquema y el modo es `system`.
-- La elección se guarda en `QSettings` (`theme`: `system`, `light`, `dark`); por defecto `system`.
-- Las flechas de los spin y combos son PNG generados por tema en la carpeta temporal (`write_assets`), porque QSS no dibuja flechas sin imagen.
+## 9. Theme
+- `theme.apply_theme(app, mode)` resolves `system` with `QStyleHints.colorScheme()`, sets the Qt scheme (dark title bar on Windows), installs the palette and QSS, and restarts the icons. It is applied again when the system scheme changes and the mode is `system`.
+- The choice is stored in `QSettings` (`theme`: `system`, `light`, `dark`); the default is `system`.
+- The spin box and combo box arrows are PNGs generated per theme in the temporary folder (`write_assets`), because QSS does not draw arrows without an image.
 
-## 10. Accesibilidad y alta densidad
-- Todo es accesible con teclado en orden lógico: barra superior, raíl, documento, panel. Los recientes se abren con Intro.
-- Cada icono-botón lleva `toolTip` y `accessibleName` en español; los atajos aparecen en el tooltip.
-- Iconos vectoriales con varias resoluciones; se prueba a 100, 125, 150 y 200 %.
-- Las miniaturas y los iconos se pintan con el `devicePixelRatio` de la pantalla.
-- Textos en español neutro y ninguna cadena incrustada en imágenes.
+## 10. Accessibility and high density
+- Everything is keyboard-accessible in logical order: top bar, rail, document, panel. Recent files open with Enter.
+- Every icon button has a `toolTip` and an `accessibleName` in English; shortcuts appear in the tooltip.
+- Vector icons at several resolutions; tested at 100, 125, 150 and 200%.
+- Thumbnails and icons are painted with the screen's `devicePixelRatio`.
+- Plain, neutral UI text and no strings embedded in images.
 
-## 11. Reglas
-- Hacer: un único acento, tokens en lugar de hex sueltos, cambios de estado por superficie y borde, foco siempre visible.
-- No hacer: sombras largas, degradados, emojis, colores decorativos, texto menor de 8.5 pt ni «equivalente a Acrobat» en la interfaz.
+## 11. Rules
+- Do: a single accent, tokens instead of loose hex values, state changes per surface and border, focus always visible.
+- Don't: long shadows, gradients, emojis, decorative colors, text smaller than 8.5 pt.

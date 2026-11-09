@@ -847,7 +847,7 @@ Consultez les derniers messages avec **Affichage > Historique des messages**, pu
 
 ## 15. Limites connues
 
-TrazoPDF couvre les tâches courantes avec les PDF. Ce n'est pas une copie d'Adobe Acrobat Pro. Voici les principales limites.
+TrazoPDF couvre les tâches courantes avec les PDF. Voici les principales limites.
 
 ### Modification
 
@@ -896,4 +896,4 @@ PDF/A et PDF/X, contenus 3D et multimédias, partage dans le nuage et révision 
 
 ---
 
-TrazoPDF est un logiciel libre distribué sous la licence AGPL-3.0-or-later. Il ne contient ni code, ni interface, ni ressource graphique d'Adobe.
+TrazoPDF est un logiciel libre distribué sous la licence AGPL-3.0-or-later.

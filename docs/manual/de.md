@@ -847,7 +847,7 @@ Die letzten Meldungen mit **Ansicht > Nachrichtenverlauf** ansehen und **Hilfe >
 
 ## 15. Bekannte Grenzen
 
-TrazoPDF deckt die üblichen Aufgaben mit PDF ab. Es ist kein Ersatz für Adobe Acrobat Pro. Dies sind die wichtigsten Grenzen.
+TrazoPDF deckt die üblichen Aufgaben mit PDF ab. Dies sind die wichtigsten Grenzen.
 
 ### Bearbeitung
 
@@ -896,4 +896,4 @@ PDF/A und PDF/X, 3D-Inhalte und Multimedia, Cloud-Freigabe und Online-Überprüf
 
 ---
 
-TrazoPDF ist freie Software unter der Lizenz AGPL-3.0-or-later. Sie enthält keinen Code, keine Oberfläche und keine grafischen Ressourcen von Adobe.
+TrazoPDF ist freie Software unter der Lizenz AGPL-3.0-or-later.
