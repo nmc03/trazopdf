@@ -10,11 +10,23 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   test:
     runs-on: windows-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+
+      - name: Instalar Tesseract (necesario para las pruebas de OCR)
+        shell: pwsh
+        run: |
+          Invoke-WebRequest 'https://github.com/UB-Mannheim/tesseract/releases/download/v5.4.0.20240606/tesseract-ocr-w64-setup-5.4.0.20240606.exe' -OutFile "$env:RUNNER_TEMP\tess.exe" -UseBasicParsing
+          Start-Process "$env:RUNNER_TEMP\tess.exe" -ArgumentList '/S' -Wait
+          "C:\Program Files\Tesseract-OCR" >> $env:GITHUB_PATH
 
       - uses: actions/setup-python@v5
         with:
@@ -39,6 +51,7 @@ jobs:
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
     needs: test
     runs-on: windows-latest
+    timeout-minutes: 60
     permissions:
       contents: write
     steps:
