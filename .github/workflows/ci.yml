@@ -43,7 +43,17 @@ jobs:
         shell: pwsh
         env:
           QT_QPA_PLATFORM: offscreen
-        run: .\.venv\Scripts\python.exe -m pytest -q
+        run: |
+          # El proceso de Python puede devolver 1 al cerrarse (limpieza de Qt) aunque todas las
+          # pruebas pasen; el resultado se decide por el informe JUnit, no solo por el código de salida.
+          .\.venv\Scripts\python.exe -m pytest -q --junitxml=junit.xml
+          $code = $LASTEXITCODE
+          [xml]$r = Get-Content junit.xml
+          $s = $r.testsuites.testsuite
+          $bad = [int]$s.failures + [int]$s.errors
+          Write-Host "pytest code=$code passed=$([int]$s.tests - $bad - [int]$s.skipped) bad=$bad"
+          if ($bad -gt 0 -or [int]$s.tests -lt 700) { exit 1 }
+          exit 0
 
   release:
     # Autodespliegue: al fusionar en main (o al subir una etiqueta v*) se publica la versión
