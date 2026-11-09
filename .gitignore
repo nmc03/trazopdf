@@ -1,0 +1,31 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+build/
+dist/
+dist-v*/
+diagnostic-dist/
+*.spec
+*.log
+test-output/
+tests/tmp*/
+tests/pdf-engine-test-*/
+tests/source-smoke/
+tests/frozen-smoke/
+tests/frozen-debug-smoke/
+tests/ui-*.png
+tests/qa-v*/
+work/
+
+# Local shortcut and old evidence dumps
+*.lnk
+
+# Instaladores generados
+installer/Output/
+
+# Modelos OCR grandes: se bajan con tools/fetch_tessdata.ps1
+assets/tessdata/fra.traineddata
+assets/tessdata/deu.traineddata
+assets/tessdata/por.traineddata
+assets/tessdata/osd.traineddata

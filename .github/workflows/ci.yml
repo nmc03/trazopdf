@@ -1,0 +1,123 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Crear entorno virtual e instalar dependencias
+        shell: pwsh
+        run: |
+          python -m venv .venv
+          .\.venv\Scripts\python.exe -m pip install --upgrade pip
+          .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+
+      - name: Ejecutar pruebas
+        shell: pwsh
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: .\.venv\Scripts\python.exe -m pytest -q
+
+  release:
+    # Autodespliegue: al fusionar en main (o al subir una etiqueta v*) se publica la versión
+    # que figura en pdf_editor/__init__.py. Si esa versión ya existe, no se duplica.
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
+    needs: test
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Leer la versión
+        id: ver
+        shell: pwsh
+        run: |
+          $t = Get-Content pdf_editor\__init__.py -Raw
+          $v = [regex]::Match($t, '__version__\s*=\s*"([^"]+)"').Groups[1].Value
+          if (-not $v) { throw 'No se encuentra __version__.' }
+          "version=$v" >> $env:GITHUB_OUTPUT
+          "tag=v$v" >> $env:GITHUB_OUTPUT
+          gh release view "v$v" *> $null
+          if ($LASTEXITCODE -eq 0) { "exists=true" >> $env:GITHUB_OUTPUT } else { "exists=false" >> $env:GITHUB_OUTPUT }
+          $global:LASTEXITCODE = 0
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Instalar Tesseract (se incluye en la aplicación)
+        if: steps.ver.outputs.exists != 'true'
+        shell: pwsh
+        run: |
+          Invoke-WebRequest 'https://github.com/UB-Mannheim/tesseract/releases/download/v5.4.0.20240606/tesseract-ocr-w64-setup-5.4.0.20240606.exe' -OutFile "$env:RUNNER_TEMP\tess.exe" -UseBasicParsing
+          Start-Process "$env:RUNNER_TEMP\tess.exe" -ArgumentList '/S' -Wait
+          if (-not (Test-Path 'C:\Program Files\Tesseract-OCR\tesseract.exe')) { throw 'Tesseract no se instaló.' }
+
+      - name: Instalar Inno Setup
+        if: steps.ver.outputs.exists != 'true'
+        shell: pwsh
+        run: |
+          Invoke-WebRequest 'https://github.com/jrsoftware/issrc/releases/download/is-6_7_4/innosetup-6.7.4.exe' -OutFile "$env:RUNNER_TEMP\is.exe" -UseBasicParsing
+          Start-Process "$env:RUNNER_TEMP\is.exe" -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait
+
+      - name: Crear entorno virtual e instalar dependencias
+        if: steps.ver.outputs.exists != 'true'
+        shell: pwsh
+        run: |
+          python -m venv .venv
+          .\.venv\Scripts\python.exe -m pip install --upgrade pip
+          .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+
+      - name: Compilar la aplicación y el instalador
+        if: steps.ver.outputs.exists != 'true'
+        shell: pwsh
+        run: .\installer\build-installer.ps1
+
+      - name: Empaquetar y calcular sumas SHA-256
+        if: steps.ver.outputs.exists != 'true'
+        shell: pwsh
+        run: |
+          $v = '${{ steps.ver.outputs.version }}'
+          $zip = "TrazoPDF-$v-windows.zip"
+          $setup = "TrazoPDF-$v-setup.exe"
+          Compress-Archive -LiteralPath 'dist\TrazoPDF' -DestinationPath $zip
+          Copy-Item "installer\Output\$setup" $setup
+          $lines = foreach ($f in @($zip, $setup)) {
+            $h = (Get-FileHash -LiteralPath $f -Algorithm SHA256).Hash.ToLowerInvariant()
+            "$h  $f"
+          }
+          [IO.File]::WriteAllText("$PWD\SHA256SUMS.txt", (($lines -join "`n") + "`n"))
+
+      - name: Publicar en la versión de GitHub
+        if: steps.ver.outputs.exists != 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.ver.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: TrazoPDF ${{ steps.ver.outputs.version }}
+          body: |
+            TrazoPDF ${{ steps.ver.outputs.version }} para Windows (64 bits).
+            Instalador y ZIP portátil **sin firmar**: Windows SmartScreen mostrará «editor desconocido».
+            Comprueba la descarga con `SHA256SUMS.txt`. Cambios en CHANGELOG.md.
+          files: |
+            TrazoPDF-${{ steps.ver.outputs.version }}-setup.exe
+            TrazoPDF-${{ steps.ver.outputs.version }}-windows.zip
+            SHA256SUMS.txt
