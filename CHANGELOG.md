@@ -2,6 +2,17 @@
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.5.1] - 2026-11-09
+
+### Added
+- Privacy section in all READMEs, a "How to verify it yourself" guide in PRIVACY.md and a licensing analysis in docs/LICENSING.md.
+- The whole automated test suite now runs with outbound network access blocked.
+
+### Changed
+- Documentation is now in English by default; the Spanish README is README.es.md.
+- References to third-party products were removed from the documentation.
+- PRIVACY.md now documents the optional time stamp as the only network use besides links you click.
+
 ## [0.5.0] - 2026-11-08
 
 ### Added
