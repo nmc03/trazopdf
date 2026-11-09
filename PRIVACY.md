@@ -13,7 +13,19 @@ TrazoPDF works entirely on your computer.
 
 ## Network connections
 
-TrazoPDF does not open network connections on its own. The only exception is when you click a link inside a document, or choose to open a link from the menu: in that case your default browser opens that address. That connection is made by the browser, not the application, and is subject to its own privacy policy.
+TrazoPDF does not open network connections on its own. There are two exceptions, both started by you:
+
+- When you click a link inside a document, or choose to open a link from the menu, your default browser opens that address. That connection is made by the browser, not the application, and is subject to its own privacy policy.
+- The optional trusted time stamp on digital signatures. It is off by default. If you turn it on and enter a time-stamp authority address, only the hash of the signature is sent to that address, never the document.
+
+OCR, anonymization, metadata removal, batch recipes, folder automations and digital signing run entirely on your computer and need no connection.
+
+## How to verify it yourself
+
+- **Block it.** In Windows Defender Firewall with Advanced Security, add an outbound rule that blocks `TrazoPDF.exe` (and the `tesseract` folder inside the installation). Every feature keeps working except the optional time stamp.
+- **Watch it.** Open Resource Monitor > Network, or run `netstat -b`, while using the application: it has no connections.
+- **Read it.** The source is open under AGPL-3.0-or-later. The automated test suite runs with outbound network access blocked (`tests/conftest.py`), so a change that added a network call would fail the build.
+- **Check your download.** Each release publishes `SHA256SUMS.txt`.
 
 ## Information the application stores
 

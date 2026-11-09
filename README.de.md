@@ -130,7 +130,14 @@ $env:QT_QPA_PLATFORM = "offscreen"
 
 ## Datenschutz
 
-TrazoPDF arbeitet auf dem eigenen Computer. Es gibt keine Konten, keine Telemetrie und keine Prüfung auf Updates, und Dokumente werden nirgendwo hochgeladen. Die einzige Netzwerkverbindung entsteht, wenn ein Link geöffnet wird, den man selbst anklickt. Details stehen in [PRIVACY.md](PRIVACY.md).
+TrazoPDF ist so gebaut, dass Ihre Dokumente Ihren Computer nie verlassen.
+
+- **Alles läuft lokal**, auch OCR (Tesseract und seine Sprachmodelle sind in der Anwendung enthalten), unumkehrbare Anonymisierung, das Entfernen von Metadaten, Stapel-Rezepte, Ordner-Automatisierungen und die digitale Signatur. Keine Cloud-Konvertierung, kein Hochladen.
+- **Keine Konten, keine Telemetrie, keine Werbung, keine Update-Abfragen.** Die Anwendung baut von sich aus keine Netzwerkverbindung auf. Ausnahmen sind nur Links, die Sie selbst anklicken, und der optionale Zeitstempel, der aus bleibt, bis Sie selbst eine Zeitstempelstelle eintragen.
+- **Überprüfbar, nicht nur versprochen.** Der Quellcode ist offen (AGPL-3.0-or-later). Die gesamte automatische Testsuite läuft mit gesperrtem ausgehendem Netzwerkzugriff; eine Änderung, die Daten senden wollte, ließe den Build scheitern. Releases enthalten SHA-256-Summen, und Sie können es selbst prüfen: Blockieren Sie `TrazoPDF.exe` in der Windows-Firewall, alle Funktionen laufen weiter.
+- **Werkzeuge für das, was man nicht sieht**: Anonymisierung mit Nachprüfung und Bericht, Bereinigung von Metadaten und versteckten Daten sowie echte Schwärzung, die den darunterliegenden Text entfernt.
+
+Einzelheiten und die Überprüfung stehen in [PRIVACY.md](PRIVACY.md).
 
 ## Lizenz
 

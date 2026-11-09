@@ -130,7 +130,14 @@ $env:QT_QPA_PLATFORM = "offscreen"
 
 ## Privacy
 
-TrazoPDF works on your computer. It has no accounts, telemetry or update checks, and it does not upload your documents anywhere. The only network connection happens when you open a link that you click yourself. Details are in [PRIVACY.md](PRIVACY.md).
+TrazoPDF is built so that your documents never leave your computer.
+
+- **Everything runs locally**, including OCR (Tesseract and its language models ship inside the app), irreversible anonymization, metadata removal, batch recipes and folder automations, and digital signing. No cloud conversion, no upload step.
+- **No accounts, no telemetry, no ads, no update pings.** The app makes no network connection of its own. The only exceptions are links you click, and the optional trusted time stamp, which stays off until you enter a time-stamp authority yourself.
+- **Verifiable, not just promised.** The code is open (AGPL-3.0-or-later). The whole automated test suite runs with outbound network access blocked, so a change that tried to phone home would fail the build. Releases publish SHA-256 sums, and you can also check it yourself by blocking `TrazoPDF.exe` in Windows Firewall: every feature keeps working.
+- **Tools to remove what you cannot see**: anonymization with a post-check and report, metadata and hidden-data cleaning, and true redaction that removes the text underneath.
+
+Details and how to verify are in [PRIVACY.md](PRIVACY.md).
 
 ## License
 

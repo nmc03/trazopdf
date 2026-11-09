@@ -130,7 +130,14 @@ $env:QT_QPA_PLATFORM = "offscreen"
 
 ## Privacidad
 
-TrazoPDF funciona en tu equipo. No tiene cuentas, telemetría ni comprobación de actualizaciones, y no sube tus documentos a ningún sitio. La única conexión de red ocurre cuando abres un enlace que tú mismo pulsas. Los detalles están en [PRIVACY.md](PRIVACY.md).
+TrazoPDF está pensado para que tus documentos no salgan nunca de tu equipo.
+
+- **Todo se ejecuta en local**, incluido el OCR (Tesseract y sus modelos de idioma van dentro de la aplicación), la anonimización irreversible, la eliminación de metadatos, las recetas por lotes, las automatizaciones de carpetas y la firma digital. Sin conversión en la nube ni subida de archivos.
+- **Sin cuentas, sin telemetría, sin anuncios, sin comprobación de actualizaciones.** La aplicación no abre conexiones de red por sí misma. Las únicas excepciones son los enlaces que pulsas tú y el sello de tiempo opcional, que está desactivado hasta que indicas tú una autoridad de sellado.
+- **Verificable, no solo prometido.** El código es abierto (AGPL-3.0-or-later). Toda la batería de pruebas automáticas se ejecuta con el acceso a la red bloqueado, así que un cambio que intentase enviar datos haría fallar la compilación. Las versiones publican sumas SHA-256 y también puedes comprobarlo tú: bloquea `TrazoPDF.exe` en el Firewall de Windows y todas las funciones siguen funcionando.
+- **Herramientas para quitar lo que no se ve**: anonimización con verificación e informe, limpieza de metadatos y datos ocultos, y censura real que elimina el texto de debajo.
+
+Los detalles y cómo comprobarlo están en [PRIVACY.md](PRIVACY.md).
 
 ## Licencia
 
