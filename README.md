@@ -1,73 +1,73 @@
 # TrazoPDF
 
-**Español** · [English](README.en.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
+[Español](README.es.md) · **English** · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
-Editor de PDF gratuito y de código abierto para Windows. Sirve para las tareas habituales con archivos PDF —leer, buscar, anotar, rellenar formularios, unir, dividir, censurar o convertir— sin enviar los documentos a ningún servicio en línea.
+Free and open-source PDF editor for Windows. It handles everyday PDF tasks —reading, searching, annotating, filling in forms, merging, splitting, redacting or converting— without sending your documents to any online service.
 
-Es una alternativa sencilla para el uso cotidiano de Adobe Acrobat. No pretende igualar todas sus funciones: quedan fuera los servicios en la nube, los flujos de envío de firmas y varias funciones especializadas. Las limitaciones concretas de cada función están descritas en [docs/FEATURES.md](docs/FEATURES.md).
+It is a simple alternative for everyday use of Adobe Acrobat. It does not aim to match all of its features: cloud services, signature-sending workflows and several specialized functions are left out. The specific limitations of each feature are described in [docs/FEATURES.md](docs/FEATURES.md).
 
-![TrazoPDF con tema claro](docs/screenshots/editor-light.png)
+![TrazoPDF with the light theme](docs/screenshots/editor-light.png)
 
-![TrazoPDF con tema oscuro](docs/screenshots/editor-dark.png)
+![TrazoPDF with the dark theme](docs/screenshots/editor-dark.png)
 
-## Características principales
+## Main features
 
-- Lectura con zoom, vista continua y de dos páginas, búsqueda y reemplazo de texto, y marcadores.
-- Selección de texto por caracteres, palabras y líneas, con copia.
-- Edición de texto y de bloques de PDF existentes, y escritura directa sobre la página.
-- Imágenes: seleccionar, mover, redimensionar, sustituir y eliminar.
-- Anotaciones: resaltado, subrayado, tachado, notas con respuestas y estado, figuras, líneas, flechas, cuadros de texto y tinta.
-- Enlaces web, de correo y a páginas internas.
-- Páginas: organizar, eliminar, duplicar, combinar, dividir, extraer, recortar y rotar.
-- Formularios AcroForm: crear campos y rellenarlos sobre la página.
-- Censura aplicada, búsqueda de datos sensibles para censurar, metadatos, archivos adjuntos y limpieza del documento.
-- Anonimizar documento (Seguridad): detecta datos personales, genera una copia nueva, la verifica y entrega un informe.
-- Encabezados y pies, numeración Bates, sellos, etiquetas de página, aplanado, optimización de tamaño, comprobación del documento y comparación de texto.
-- Contraseñas y cifrado AES-256.
-- Firma digital con certificado propio en formato PKCS#12, invisible o con apariencia visible, con varias firmas y validación local (sin comprobar revocación; no es una firma cualificada eIDAS).
-- OCR para escaneos incluido en el programa, sin instalar nada: español, inglés, francés, alemán y portugués, con enderezado y detección de orientación.
-- Procesamiento por lotes con recetas, también desde la línea de comandos.
-- Conversión de Office a PDF con LibreOffice, y exportación de PDF a DOCX, XLSX y PPTX.
-- Comparación visual de dos PDF con informe en ZIP.
-- Deshacer y rehacer durante la sesión.
-- Varios PDF abiertos en pestañas, con autoguardado y recuperación de cambios no guardados, copia `.bak` opcional, Guardar copia y Revertir.
-- Medición de distancias, capas opcionales y acciones guiadas para tareas frecuentes.
-- Atajos de teclado consultables con F1; por ejemplo `F` para Rellenar y firmar y `K` para Crear campo.
-- Interfaz en español, inglés, francés, alemán y portugués (Ayuda > Idioma, o el idioma del sistema).
+- Reading with zoom, continuous and two-page views, text search and replace, and bookmarks.
+- Text selection by character, word and line, with copy.
+- Editing existing PDF text and blocks, and typing directly on the page.
+- Images: select, move, resize, replace and delete.
+- Annotations: highlight, underline, strikethrough, notes with replies and status, shapes, lines, arrows, text boxes and ink.
+- Web, email and internal page links.
+- Pages: organize, delete, duplicate, merge, split, extract, crop and rotate.
+- AcroForm forms: create fields and fill them in on the page.
+- Applied redaction, search for sensitive data to redact, metadata, attachments and document cleanup.
+- Anonymize document (Security): detects personal data, creates a new copy, verifies it and provides a report.
+- Headers and footers, Bates numbering, stamps, page labels, flattening, file size optimization, document check and text comparison.
+- Passwords and AES-256 encryption.
+- Digital signatures with your own PKCS#12 certificate, invisible or with a visible appearance, with multiple signatures and local validation (no revocation check; not an eIDAS qualified signature).
+- OCR for scanned documents included in the program, with nothing to install: Spanish, English, French, German and Portuguese, with straightening and orientation detection.
+- Batch processing with recipes, also from the command line.
+- Office to PDF conversion with LibreOffice, and PDF export to DOCX, XLSX and PPTX.
+- Visual comparison of two PDFs with a ZIP report.
+- Undo and redo during the session.
+- Several PDFs open in tabs, with autosave and recovery of unsaved changes, an optional `.bak` copy, Save a copy and Revert.
+- Distance measurement, optional layers and guided actions for common tasks.
+- Keyboard shortcuts you can look up with F1; for example `F` for Fill and sign and `K` for Create field.
+- Interface in Spanish, English, French, German and Portuguese (Help > Language, or the system language).
 
-La guía completa de uso está en el [manual de usuario](docs/manual/es.md).
+The full user guide is in the [user manual](docs/manual/en.md).
 
-Consulta [docs/FEATURES.md](docs/FEATURES.md) para el alcance y los límites de cada área. Los cambios de cada versión están en el [CHANGELOG](CHANGELOG.md).
+See [docs/FEATURES.md](docs/FEATURES.md) for the scope and limits of each area. Changes in each version are listed in the [CHANGELOG](CHANGELOG.md).
 
-## Procesamiento por lotes
+## Batch processing
 
-**Herramientas > Procesar varios PDFs…** aplica una receta (lista ordenada de pasos) a varios archivos sin tocar los originales. Pasos disponibles: anonimizar, OCR, optimizar, limpiar metadatos y contenido oculto, marca de agua, numerar páginas, numeración Bates, girar, recortar márgenes, firmar con certificado y exportar texto. Las recetas se pueden guardar, importar y exportar como `.json`, y hay tres predefinidas: *Anonimizar y archivar*, *Escaneo a PDF buscable* y *Reducir y limpiar*.
+**Tools > Process multiple PDFs…** applies a recipe (an ordered list of steps) to several files without touching the originals. Available steps: anonymize, OCR, optimize, clean metadata and hidden content, watermark, number pages, Bates numbering, rotate, crop margins, sign with a certificate and export text. Recipes can be saved, imported and exported as `.json` files, and there are three presets: *Anonymize and archive*, *Scan to searchable PDF* and *Reduce and clean*.
 
-También se puede usar sin ventana, por ejemplo para automatizar un escáner:
+It can also run without a window, for example to automate a scanner:
 
 ```
 "TrazoPDF.exe" --batch receta.json --in C:\Escaneos --out C:\Salida --recursive --on-conflict renombrar
 "TrazoPDF.exe" --watch C:\Entrada --recipe receta.json --out C:\Salida
 ```
 
-`--on-conflict` admite `renombrar` (por defecto), `omitir` y `sobrescribir`; `--interval` cambia los segundos entre revisiones de `--watch` (5 por defecto). El código de salida es 0 si todo fue bien, 1 si algún archivo falló y 2 si el uso es incorrecto. El informe se imprime y se guarda como `batch-report.json` en la carpeta de salida. Si la receta firma con certificado, la contraseña se toma de la variable de entorno `PDFEDITOR_SIGN_PASSWORD`. Los detalles están en el [manual](docs/manual/es.md#lotes-y-recetas).
+`--on-conflict` accepts `renombrar` (default), `omitir` and `sobrescribir` (these values are literal command-line arguments and must be typed as shown); `--interval` changes the number of seconds between `--watch` checks (5 by default). The exit code is 0 if everything went well, 1 if any file failed and 2 if the usage is incorrect. The report is printed and saved as `batch-report.json` in the output folder. If the recipe signs with a certificate, the password is taken from the `PDFEDITOR_SIGN_PASSWORD` environment variable. Details are in the [manual](docs/manual/en.md#batches-and-recipes).
 
-## Descargar e instalar
+## Download and install
 
-Las versiones publicadas están en la página de [Releases](../../releases). Hay dos formas de instalarlo:
+Published versions are on the [Releases](../../releases) page. There are two ways to install it:
 
-- **Instalador** (`TrazoPDF-x.y.z-setup.exe`): instala para tu usuario sin permisos de administrador. Puedes elegir instalarlo para todos los usuarios del equipo. Crea el acceso en el menú Inicio y, si lo marcas, en el escritorio. Registra la aplicación en «Abrir con» para los PDF sin cambiar tu programa predeterminado.
-- **Carpeta portable** (`TrazoPDF-x.y.z-windows.zip`): descomprime el archivo y ejecuta `TrazoPDF.exe`. No requiere instalación.
+- **Installer** (`TrazoPDF-x.y.z-setup.exe`): installs for your user without administrator rights. You can choose to install it for all users on the computer. It creates a Start menu shortcut and, if you select it, a desktop shortcut. It registers the application in "Open with" for PDFs without changing your default program.
+- **Portable folder** (`TrazoPDF-x.y.z-windows.zip`): unzip the file and run `TrazoPDF.exe`. No installation required.
 
-Comprueba la integridad del archivo descargado con el fichero `SHA256SUMS.txt` de la misma versión.
+Check the integrity of the downloaded file with the `SHA256SUMS.txt` file from the same version.
 
-Requisitos: Windows 10 u 11 de 64 bits.
+Requirements: 64-bit Windows 10 or 11.
 
-> **Sin firmar.** El instalador y el ejecutable no están firmados con certificado de código, así que Windows SmartScreen puede avisar de «editor desconocido». Si descargaste el archivo de la página oficial de Releases, elige *Más información* y luego *Ejecutar de todas formas*, y comprueba antes la suma con `SHA256SUMS.txt`.
+> **Not signed.** The installer and the executable are not signed with a code-signing certificate, so Windows SmartScreen may show an "unknown publisher" warning. If you downloaded the file from the official Releases page, choose *More info* and then *Run anyway*, and check the checksum first with `SHA256SUMS.txt`.
 
-## Compilar desde el código fuente
+## Build from source
 
-Necesitas Python 3.13 para Windows.
+You need Python 3.13 for Windows.
 
 ```powershell
 py -3.13 -m venv .venv
@@ -75,69 +75,69 @@ py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -m pdf_editor
 ```
 
-Para generar la carpeta de la aplicación:
+To generate the application folder:
 
 ```powershell
 .\build.ps1
 ```
 
-La salida queda en `dist\TrazoPDF\`, con `TrazoPDF.exe` y un fichero `SHA256SUMS.txt` junto a la carpeta. Para crear el instalador hace falta [Inno Setup 6](https://jrsoftware.org/isinfo.php):
+The output goes to `dist\TrazoPDF\`, with `TrazoPDF.exe` and a `SHA256SUMS.txt` file next to the folder. To create the installer you need [Inno Setup 6](https://jrsoftware.org/isinfo.php):
 
 ```powershell
 .\installer\build-installer.ps1
 ```
 
-El script busca `ISCC.exe` en la instalación de Inno Setup y, si no lo encuentra, puedes indicar su ruta con la variable de entorno `INNO_SETUP_ISCC`. El instalador se crea en `installer\Output\`.
+The script looks for `ISCC.exe` in the Inno Setup installation and, if it cannot find it, you can give its path in the `INNO_SETUP_ISCC` environment variable. The installer is created in `installer\Output\`.
 
-Las pruebas se ejecutan sin ventanas visibles:
+Tests run without visible windows:
 
 ```powershell
 $env:QT_QPA_PLATFORM = "offscreen"
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-## Dependencias externas opcionales
+## Optional external dependencies
 
-- **LibreOffice** (no incluido): conversión de documentos de Office a PDF. Solo es necesario para esa función. Descarga: https://www.libreoffice.org/
-- **Tesseract OCR**: ya no es una dependencia externa en la versión instalada ni en la portable, que lo incluyen con los modelos de español, inglés, francés, alemán y portugués. Solo al ejecutar desde el código fuente debe estar instalado y localizable (los modelos adicionales se descargan con `tools/fetch_tessdata.ps1`). Descarga: https://github.com/UB-Mannheim/tesseract/wiki
+- **LibreOffice** (not included): converts Office documents to PDF. It is only needed for that feature. Download: https://www.libreoffice.org/
+- **Tesseract OCR**: is no longer an external dependency in the installed or portable version, which include it together with the Spanish, English, French, German and Portuguese models. Only when running from source does it need to be installed and findable (additional models are downloaded with `tools/fetch_tessdata.ps1`). Download: https://github.com/UB-Mannheim/tesseract/wiki
 
-## Atajos de teclado
+## Keyboard shortcuts
 
-| Atajo | Acción |
+| Shortcut | Action |
 | --- | --- |
-| `Ctrl+O` | Abrir |
-| `Ctrl+S` | Guardar |
-| `Ctrl+Shift+S` | Guardar como |
-| `Ctrl+Z` | Deshacer |
-| `Ctrl+Shift+Z` | Rehacer |
-| `Ctrl+Y` | Rehacer |
-| `Ctrl+A` | Seleccionar todo (miniaturas o texto, según el foco) |
-| `Ctrl+Tab` / `Ctrl+Shift+Tab` | Cambiar de pestaña de documento |
-| `Alt+1` a `Alt+9` | Ir a la pestaña indicada |
-| `Ctrl+W` | Cerrar el documento actual |
-| `F1` | Atajos de teclado (Ayuda) |
-| `Ctrl+E` | Editar PDF |
-| `Ctrl+F` | Buscar |
-| `F3` / `Mayús+F3` | Resultado siguiente / anterior |
-| `Ctrl+R` | Girar |
-| `Ctrl+P` | Imprimir |
-| `Ctrl+C` | Copiar texto seleccionado |
-| `Ctrl+Enter` | Aplicar el texto que se está escribiendo |
-| `Esc` | Cancelar la escritura en curso |
-| `F2` | Editar el bloque seleccionado |
-| `Supr` | Eliminar el elemento seleccionado |
-| `Ctrl` + rueda del ratón | Cambiar el zoom |
+| `Ctrl+O` | Open |
+| `Ctrl+S` | Save |
+| `Ctrl+Shift+S` | Save as |
+| `Ctrl+Z` | Undo |
+| `Ctrl+Shift+Z` | Redo |
+| `Ctrl+Y` | Redo |
+| `Ctrl+A` | Select all (thumbnails or text, depending on focus) |
+| `Ctrl+Tab` / `Ctrl+Shift+Tab` | Switch document tab |
+| `Alt+1` to `Alt+9` | Go to the indicated tab |
+| `Ctrl+W` | Close the current document |
+| `F1` | Keyboard shortcuts (Help) |
+| `Ctrl+E` | Edit PDF |
+| `Ctrl+F` | Find |
+| `F3` / `Shift+F3` | Next / previous result |
+| `Ctrl+R` | Rotate |
+| `Ctrl+P` | Print |
+| `Ctrl+C` | Copy selected text |
+| `Ctrl+Enter` | Apply the text being typed |
+| `Esc` | Cancel the text being typed |
+| `F2` | Edit the selected block |
+| `Del` | Delete the selected item |
+| `Ctrl` + mouse wheel | Change the zoom |
 
-## Privacidad
+## Privacy
 
-TrazoPDF funciona en tu equipo. No tiene cuentas, telemetría ni comprobación de actualizaciones, y no sube tus documentos a ningún sitio. La única conexión de red ocurre cuando abres un enlace que tú mismo pulsas. Los detalles están en [PRIVACY.md](PRIVACY.md).
+TrazoPDF works on your computer. It has no accounts, telemetry or update checks, and it does not upload your documents anywhere. The only network connection happens when you open a link that you click yourself. Details are in [PRIVACY.md](PRIVACY.md).
 
-## Licencia
+## License
 
-TrazoPDF se distribuye bajo la [GNU Affero General Public License v3.0 o posterior](LICENSE) (AGPL-3.0-or-later). Esta licencia es necesaria porque PyMuPDF, una de sus bibliotecas, está bajo AGPL-3.0. Las licencias de las demás bibliotecas están en [THIRD-PARTY.md](THIRD-PARTY.md).
+TrazoPDF is distributed under the [GNU Affero General Public License v3.0 or later](LICENSE) (AGPL-3.0-or-later). This license is required because PyMuPDF, one of its libraries, is under AGPL-3.0. The licenses of the other libraries are in [THIRD-PARTY.md](THIRD-PARTY.md).
 
-Es una implementación independiente. No contiene código, interfaz ni recursos gráficos de Adobe.
+It is an independent implementation. It contains no code, interface or graphic assets from Adobe.
 
-## Contribuir
+## Contributing
 
-Las contribuciones son bienvenidas. Antes de empezar, lee [CONTRIBUTING.md](CONTRIBUTING.md) y el [código de conducta](CODE_OF_CONDUCT.md). Para reportar una vulnerabilidad, sigue [SECURITY.md](SECURITY.md).
+Contributions are welcome. Before you start, read [CONTRIBUTING.md](CONTRIBUTING.md) and the [code of conduct](CODE_OF_CONDUCT.md). To report a vulnerability, follow [SECURITY.md](SECURITY.md).

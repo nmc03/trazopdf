@@ -1,6 +1,6 @@
 # TrazoPDF
 
-[Español](README.md) · [English](README.en.md) · **Français** · [Deutsch](README.de.md) · [Português](README.pt.md)
+[Español](README.es.md) · [English](README.md) · **Français** · [Deutsch](README.de.md) · [Português](README.pt.md)
 
 Éditeur de PDF gratuit et open source pour Windows. Il permet de réaliser les tâches courantes avec les fichiers PDF —lire, rechercher, annoter, remplir des formulaires, fusionner, diviser, caviarder ou convertir— sans envoyer les documents à aucun service en ligne.
 

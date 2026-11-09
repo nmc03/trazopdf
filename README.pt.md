@@ -1,6 +1,6 @@
 # TrazoPDF
 
-[Español](README.md) · [English](README.en.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · **Português**
+[Español](README.es.md) · [English](README.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · **Português**
 
 Editor de PDF gratuito e de código aberto para Windows. Serve para as tarefas habituais com arquivos PDF — ler, localizar, anotar, preencher formulários, unir, dividir, tarjar ou converter — sem enviar os documentos a nenhum serviço online.
 
